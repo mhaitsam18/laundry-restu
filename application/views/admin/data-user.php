@@ -60,14 +60,7 @@
                                         </td>
                                         <td><?= $key['date_created'] ?></td>
 
-                                        <?php
-                                        if (file_exists("./assets/img/profile/$key[image]")) {
-                                            $image = base_url("assets/img/profile/$key[image]");
-                                        } else {
-                                            $image = base_url2("assets/img/profile/$key[image]");
-                                        }
-                                        ?>
-                                        <td><img src="<?= $image ?>" class="img-thumbnail"></td>
+                                        <td><img src="<?= base_url("assets/img/$key[image]") ?>" class="img-thumbnail"></td>
                                         <td>
                                             <a href="" class="badge bg-warning setRoleButton" data-bs-toggle="modal" data-bs-target="#setRoleModal" data-id="<?= $key['uid'] ?>">Set Role</a>
                                         </td>

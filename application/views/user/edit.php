@@ -54,13 +54,6 @@
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label for="place_of_birth" class="col-sm-2 col-form-label">Place of Birth</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="place_of_birth" name="place_of_birth" value="<?= $user['place_of_birth'] ?>">
-                                        <?= form_error('place_of_birth', '<small class="text-danger pl-3">', '</small>') ?>
-                                    </div>
-                                </div>
-                                <div class="mb-3 row">
                                     <label for="birthday" class="col-sm-2 col-form-label">Birth Day</label>
                                     <div class="col-sm-10">
                                         <input type="date" class="form-control" id="birthday" name="birthday" value="<?= $user['birthday'] ?>">
@@ -108,14 +101,13 @@
                                         <div class="row">
                                             <div class="col-sm-3">
                                                 <?php
-                                                $image = base_url("assets/img/profile/$user[image]");
+                                                $image = base_url("assets/img/$user[image]");
                                                 ?>
-                                                <img src="<?= $image ?>" class="img-thumbnail">
+                                                <img src="<?= $image ?>" class="img-thumbnail img-preview">
                                             </div>
                                             <div class="col-sm-9">
                                                 <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="image" name="image">
-                                                    <label class="custom-file-label" for="image">Choose file</label>
+                                                    <input type="file" class="custom-file-input img-input" id="image" name="image" onchange="previewImg()">
                                                 </div>
                                             </div>
                                         </div>
@@ -162,3 +154,17 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function previewImg() {
+            const picture = document.querySelector('.img-input');
+            const imgPreview = document.querySelector('.img-preview');
+            imgPreview.style.display = 'block';
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(picture.files[0]);
+
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+            }
+        }
+    </script>

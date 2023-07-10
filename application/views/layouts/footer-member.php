@@ -1,8 +1,8 @@
 <!-- partial:partials/_footer.html -->
 <footer class="footer border-top">
     <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between py-3 small">
-        <p class="text-muted mb-1 mb-md-0">Copyright © 2023 <a href="https://www.nobleui.com" target="_blank">IEI-Jabar</a>.</p>
-        <p class="text-muted">Handcrafted By Feby Geby Amel With <i class="mb-1 text-primary ms-1 icon-sm" data-feather="heart"></i></p>
+        <p class="text-muted mb-1 mb-md-0">Copyright © <?= date('Y') ?> <a href="https://www.nobleui.com" target="_blank"><?= app_name() ?></a>.</p>
+        <p class="text-muted">Handcrafted By <?= creator_name() ?> With <i class="mb-1 text-primary ms-1 icon-sm" data-feather="heart"></i></p>
     </div>
 </footer>
 <!-- partial -->

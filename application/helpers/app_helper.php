@@ -4,6 +4,14 @@ function app_name()
 {
 	return "Laundry Restu";	
 }
+function app_brand()
+{
+	return "Laundry <span>Restu</span>";	
+}
+function creator_name()
+{
+	return "Anggun Shinta";	
+}
 
 function is_logged_in()
 {

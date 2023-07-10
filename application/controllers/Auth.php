@@ -32,7 +32,7 @@ class Auth extends CI_Controller {
 		$this->form_validation->set_rules('username', 'username', 'trim|required');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required');
 		if ($this->form_validation->run() == false) {
-			$data['title'] = 'User Log In';
+			$data['title'] = app_name().' | Log In';
 			$data['page'] = 'auth/login';
 			$this->load->view('layouts/auth_main', $data);
 		} else{
@@ -67,7 +67,7 @@ class Auth extends CI_Controller {
 		// 
 		$this->form_validation->set_rules('password2','Confrim Password', 'required|trim|matches[password1]');
 		if ($this->form_validation->run() == false) {
-			$data['title'] = 'User Registration';
+			$data['title'] = app_name() . ' | Registrasi';
 			$data['page'] = 'auth/registration';
 			$this->load->view('layouts/auth_main', $data);
 		} else{
@@ -76,11 +76,10 @@ class Auth extends CI_Controller {
 				'email' => htmlspecialchars($this->input->post('email', true)),
 				'username' => htmlspecialchars($this->input->post('username', true)),
 				'gender' => htmlspecialchars($this->input->post('gender', true)),
-				'place_of_birth' => htmlspecialchars($this->input->post('place_of_birth', true)),
 				'birthday' => htmlspecialchars($this->input->post('birthday', true)),
 				'phone_number' => htmlspecialchars($this->input->post('phone_number', true)),
 				'address' => htmlspecialchars($this->input->post('address', true)),
-				'image' => 'default.svg',
+				'image' => 'profile/default.jpg',
 				'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
 				// 'role_id' => htmlspecialchars($this->input->post('role_id', true)),
 				'role_id' => 2,
@@ -230,7 +229,7 @@ class Auth extends CI_Controller {
 			}
 		} else{
 			$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-				Email is not registered!
+				Username / Email is not registered!
 				</div>');
 			redirect('auth');
 		}

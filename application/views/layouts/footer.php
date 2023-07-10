@@ -1,7 +1,7 @@
 <!-- partial:partials/_footer.html -->
 <footer class="footer d-flex flex-column flex-md-row align-items-center justify-content-between px-4 py-3 border-top small">
-    <p class="text-muted mb-1 mb-md-0">Copyright © 2021 <a href="<?= base_url() ?>" target="_blank">IEI Jabar</a>.</p>
-    <p class="text-muted">Handcrafted By Feby Geby Amel With <i class="mb-1 text-primary ms-1 icon-sm" data-feather="heart"></i></p>
+    <p class="text-muted mb-1 mb-md-0">Copyright © <?= date('Y') ?> <a href="<?= base_url() ?>" target="_blank"><?= app_name() ?></a>.</p>
+    <p class="text-muted">Handcrafted By <?= creator_name() ?> With <i class="mb-1 text-primary ms-1 icon-sm" data-feather="heart"></i></p>
 </footer>
 <!-- partial -->
 

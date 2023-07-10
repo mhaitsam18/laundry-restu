@@ -8,12 +8,13 @@
 			</div>
 			<div class="col-md-8 ps-md-0">
 				<div class="auth-form-wrapper px-4 py-5">
-					<a href="#" class="noble-ui-logo d-block mb-2">Laundry<span>Restu</span></a>
+					<a href="#" class="noble-ui-logo d-block mb-2"><?= app_brand() ?></a>
 					<h5 class="text-muted fw-normal mb-4">Selamat datang! Silahkan Login.</h5>
+					<?= $this->session->flashdata('message'); ?>
 					<form action="<?= base_url('auth/') ?>" method="post" class="forms-sample">
 						<div class="MB-3">
 							<label for="username" class="form-label">Username</label>
-							<input type="text" class="form-control <?= (form_error('username')) ? "is-invalid" : '' ?>" name="username" id="username" placeholder="Username">
+							<input type="text" class="form-control <?= (form_error('username')) ? "is-invalid" : '' ?>" name="username" id="username" placeholder="Username" autocomplete="Username">
 							<div class="form-control-icon">
 								<i class="bi bi-person"></i>
 							</div>
@@ -36,7 +37,7 @@
 						<div>
 							<button type="submit" class="btn btn-primary me-2 mb-2 mb-md-0 text-white">Login</button>
 						</div>
-						<a href="<?= base_url() ?>/auth/register" class="d-block mt-3 text-muted">Not a user? Sign up</a>
+						<a href="<?= base_url('/auth/registration') ?>" class="d-block mt-3 text-muted">Belum Punya akun? Ayo Daftar</a>
 					</form>
 				</div>
 			</div>
