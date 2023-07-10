@@ -9,9 +9,6 @@ class Admin extends CI_Controller {
 		is_logged_in();
 		$this->load->library('form_validation');
 		$this->load->model('Admin_model');
-		$this->load->model('User_model');
-		$this->load->model('DataMaster_model');
-		$this->load->model('Menu_model');
 		date_default_timezone_set('Asia/Jakarta');
 	}
 

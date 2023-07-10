@@ -209,7 +209,7 @@ class Auth extends CI_Controller {
 					if ($user['role_id'] == 1) {
 						redirect('admin');
 					} elseif($user['role_id'] == 2){
-						redirect('member');
+						redirect('user');
 					} else {
 						redirect('user');
 					}

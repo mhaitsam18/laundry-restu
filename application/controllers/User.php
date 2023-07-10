@@ -7,7 +7,6 @@ class User extends CI_Controller {
 	{
 		parent:: __construct();
 		is_logged_in();
-		$this->load->model('User_model');
 		date_default_timezone_set('Asia/Jakarta');
 	}
 
