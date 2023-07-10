@@ -26,7 +26,7 @@ class Laundry extends CI_Controller
 
         $this->db->select('laundry.*, jenis_laundry.jenis_laundry');
         $this->db->join('jenis_laundry', 'laundry.jenis_laundry_id = jenis_laundry.id', 'left');
-        $data['laundrys'] = $this->db->get('laundry')->result();
+        $data['laundrys'] = $this->db->get('laundry')->result_array();
         
         
         if ($this->input->post('form') == "member") {
@@ -75,6 +75,8 @@ class Laundry extends CI_Controller
                 if ($this->input->post('aksi') == "add") {
                     $this->db->insert('laundry', [
                         'member_id' => $this->input->post('member_id'),
+                        'pengantaran' => 'pick up',
+                        'status' => 'menunggu pengambilan',
                     ]);
                     $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
                     Kurir Anda akan segera datang dan menghubungi Anda :)

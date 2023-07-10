@@ -9,7 +9,7 @@
 </div>
 
 <!-- core:js -->
-<script src="<?= base_url() ?>/assets/vendors/core/core.js"></script>
+<script src="<?= base_url() ?>assets/vendors/core/core.js"></script>
 <!-- endinject -->
 
 <!-- Plugin js for this page -->
@@ -23,21 +23,21 @@
 
 
 <!-- Plugin js for this page -->
-<script src="<?= base_url() ?>/assets/vendors/chartjs/Chart.min.js"></script>
-<script src="<?= base_url() ?>/assets/vendors/jquery.flot/jquery.flot.js"></script>
-<script src="<?= base_url() ?>/assets/vendors/jquery.flot/jquery.flot.resize.js"></script>
-<script src="<?= base_url() ?>/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-<script src="<?= base_url() ?>/assets/vendors/apexcharts/apexcharts.min.js"></script>
+<script src="<?= base_url() ?>assets/vendors/chartjs/Chart.min.js"></script>
+<script src="<?= base_url() ?>assets/vendors/jquery.flot/jquery.flot.js"></script>
+<script src="<?= base_url() ?>assets/vendors/jquery.flot/jquery.flot.resize.js"></script>
+<script src="<?= base_url() ?>assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+<script src="<?= base_url() ?>assets/vendors/apexcharts/apexcharts.min.js"></script>
 <!-- End plugin js for this page -->
 
 <!-- inject:js -->
-<script src="<?= base_url() ?>/assets/vendors/feather-icons/feather.min.js"></script>
-<script src="<?= base_url() ?>/assets/js/template.js"></script>
+<script src="<?= base_url() ?>assets/vendors/feather-icons/feather.min.js"></script>
+<script src="<?= base_url() ?>assets/js/template.js"></script>
 <!-- endinject -->
 
 <!-- Custom js for this page -->
-<script src="<?= base_url() ?>/assets/js/dashboard-light.js"></script>
-<script src="<?= base_url() ?>/assets/js/datepicker.js"></script>
+<script src="<?= base_url() ?>assets/js/dashboard-light.js"></script>
+<script src="<?= base_url() ?>assets/js/datepicker.js"></script>
 <!-- End custom js for this page -->
 
 
@@ -49,9 +49,9 @@
 <!-- End plugin js for this page -->
 
 <!-- Custom js for this page -->
-<script src="<?= base_url() ?>/assets/js/tinymce.js"></script>
-<script src="<?= base_url() ?>/assets/js/simplemde.js"></script>
-<script src="<?= base_url() ?>/assets/js/ace.js"></script>
+<script src="<?= base_url() ?>assets/js/tinymce.js"></script>
+<script src="<?= base_url() ?>assets/js/simplemde.js"></script>
+<script src="<?= base_url() ?>assets/js/ace.js"></script>
 <!-- End custom js for this page -->
 
 <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
