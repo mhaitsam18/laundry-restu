@@ -15,7 +15,7 @@
                         <div class="d-flex justify-content-between align-items-baseline mb-2">
                             <h6 class="card-title mb-0">Data Member</h6>
                         </div>
-                        <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>" data-objek="Laundry"></div>
+                        <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>" data-objek="Berhasil"></div>
                         <?= $this->session->flashdata('message'); ?>
                         <div class="row mb-3">
                             <div class="col-lg-6">
@@ -94,7 +94,7 @@
                         <div class="d-flex justify-content-between align-items-baseline mb-2">
                             <h6 class="card-title mb-0">Lengkapi data Member Terlebih Dahulu</h6>
                         </div>
-                        <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>" data-objek="Laundry"></div>
+                        <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>" data-objek="Berhasil"></div>
                         <?= $this->session->flashdata('message'); ?>
                         <div class="row mb-3">
                             <div class="col-lg-6">

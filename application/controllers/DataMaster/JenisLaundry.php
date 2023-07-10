@@ -43,7 +43,7 @@ class JenisLaundry extends CI_Controller
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
                     Jenis Laundry berhasil ditambahkan!
                     </div>');
-                $this->session->set_flashdata('flash', 'berhasil ditambahkan!');
+                $this->session->set_flashdata('flash', 'Jenis Laundry berhasil ditambahkan!');
             } elseif ($this->input->post('aksi') == "update") {
 
 
@@ -77,7 +77,7 @@ class JenisLaundry extends CI_Controller
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
                 Jenis Laundry berhasil diperbarui!
                     </div>');
-                $this->session->set_flashdata('flash', 'berhasil diperbarui!');
+                $this->session->set_flashdata('flash', 'Jenis Laundry berhasil diperbarui!');
             }
             redirect($_SERVER['HTTP_REFERER']);
         }
@@ -90,7 +90,7 @@ class JenisLaundry extends CI_Controller
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
         jenis laundry berhasil dihapus!
 			</div>');
-        $this->session->set_flashdata('flash', 'berhasil dihapus!');
+        $this->session->set_flashdata('flash', 'Jenis Laundry berhasil dihapus!');
 
         redirect($_SERVER['HTTP_REFERER']);
     }

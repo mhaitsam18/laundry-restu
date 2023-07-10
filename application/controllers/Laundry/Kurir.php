@@ -79,7 +79,7 @@ class Kurir extends CI_Controller
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
                     kurir berhasil ditambahkan!
                     </div>');
-                $this->session->set_flashdata('flash', 'berhasil ditambahkan!');
+                $this->session->set_flashdata('flash', 'Data kurir berhasil ditambahkan!');
             } elseif ($this->input->post('aksi') == "update") {
 
 
@@ -123,7 +123,7 @@ class Kurir extends CI_Controller
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
                 kurir berhasil diperbarui!
                     </div>');
-                $this->session->set_flashdata('flash', 'berhasil diperbarui!');
+                $this->session->set_flashdata('flash', 'Data kurir berhasil diperbarui!');
             }
             redirect($_SERVER['HTTP_REFERER']);
         }
@@ -136,7 +136,7 @@ class Kurir extends CI_Controller
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
         kurir berhasil dihapus!
 			</div>');
-        $this->session->set_flashdata('flash', 'berhasil dihapus!');
+        $this->session->set_flashdata('flash', 'Data kurir berhasil dihapus!');
 
         redirect($_SERVER['HTTP_REFERER']);
     }

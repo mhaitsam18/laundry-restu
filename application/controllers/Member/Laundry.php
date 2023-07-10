@@ -33,7 +33,6 @@ class Laundry extends CI_Controller
             $this->form_validation->set_rules('daerah_id', 'Daerah', 'trim|required');
             $this->form_validation->set_rules('nama_kost', 'Nama Kost', 'trim|required');
             $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
-            $this->form_validation->set_rules('paket_id', 'Paket', 'trim|required');
         }
         
         if ($this->form_validation->run() == false) {
@@ -58,7 +57,7 @@ class Laundry extends CI_Controller
                     $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
                         Data Member telah dilengkapi!
                         </div>');
-                    $this->session->set_flashdata('flash', 'telah dilengkapi!');
+                    $this->session->set_flashdata('flash', 'Data Member telah dilengkapi!');
                 } elseif ($this->input->post('aksi') == "update") {
                     $this->db->where('member_id', $this->input->post('member_id'));
                     $this->db->update('member', [
@@ -70,7 +69,7 @@ class Laundry extends CI_Controller
                     $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
                         Data Member telah diperbarui!
                         </div>');
-                    $this->session->set_flashdata('flash', 'telah diperbarui!');
+                    $this->session->set_flashdata('flash', 'Data Member telah diperbarui!');
                 }
             } elseif ($this->input->post('form') == "laundry") {
                 if ($this->input->post('aksi') == "add") {

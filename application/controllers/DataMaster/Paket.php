@@ -41,7 +41,7 @@ class Paket extends CI_Controller
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
                     Paket berhasil ditambahkan!
                     </div>');
-                $this->session->set_flashdata('flash', 'berhasil ditambahkan!');
+                $this->session->set_flashdata('flash', 'Data paket berhasil ditambahkan!');
             } elseif ($this->input->post('aksi') == "update") {
 
 
@@ -74,7 +74,7 @@ class Paket extends CI_Controller
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
                 Paket berhasil diperbarui!
                     </div>');
-                $this->session->set_flashdata('flash', 'berhasil diperbarui!');
+                $this->session->set_flashdata('flash', 'Data paket berhasil diperbarui!');
             }
             redirect($_SERVER['HTTP_REFERER']);
         }
@@ -87,7 +87,7 @@ class Paket extends CI_Controller
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
         Paket berhasil dihapus!
 			</div>');
-        $this->session->set_flashdata('flash', 'berhasil dihapus!');
+        $this->session->set_flashdata('flash', 'Data paket berhasil dihapus!');
 
         redirect($_SERVER['HTTP_REFERER']);
     }
