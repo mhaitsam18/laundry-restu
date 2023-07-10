@@ -31,38 +31,48 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Nama Lengkap</th>
-                                    <th scope="col">Nomor KTP</th>
-                                    <!-- <th scope="col">Foto KTP</th> -->
+                                    <th scope="col">Daerah</th>
+                                    <th scope="col">Nama Kost</th>
+                                    <th scope="col">Alamat Pengantaran</th>
+                                    <th scope="col">Paket</th>
+                                    <th scope="col">Masa Paket</th>
                                     <th scope="col">Username</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Jenis Kelamin</th>
                                     <th scope="col">Tanggal Lahir</th>
                                     <th scope="col">Nomor Gawai</th>
-                                    <th scope="col">Alamat</th>
                                     <th scope="col">Foto</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php $no = 1; ?>
-                                <?php foreach ($kurirs as $kurir) : ?>
+                                <?php foreach ($members as $member) : ?>
 
                                     <tr>
                                         <td><?= $no++ ?></td>
-                                        <td><?= $kurir['name'] ?></td>
-                                        <td><?= $kurir['no_ktp'] ?></td>
-                                        <!-- <td><?= $kurir['foto_ktp'] ?></td> -->
-                                        <td><?= $kurir['username'] ?></td>
-                                        <td><?= $kurir['email'] ?></td>
-                                        <td><?= $kurir['gender'] ?></td>
-                                        <td><?= $kurir['birthday'] ?></td>
-                                        <td><?= $kurir['phone_number'] ?></td>
-                                        <td><?= $kurir['address'] ?></td>
-                                        <td><img src="<?= base_url('assets/img/' . $kurir['image']) ?>" class="img-thumbnail img-fluid"></td>
+                                        <td><?= $member['name'] ?></td>
+                                        <td><?= $member['nama_daerah'] ?></td>
+                                        <td><?= $member['nama_kost'] ?></td>
+                                        <td><?= $member['address'] ?></td>
+                                        <td><?= $member['paket'] ?></td>
                                         <td>
-                                            <a href="#" class="badge bg-success btn-update" data-bs-toggle="modal" data-bs-target="#editModal" data-id="<?= $kurir['kurir_id'] ?>" data-user_id="<?= $kurir['user_id'] ?>" data-name="<?= $kurir['name'] ?>" data-username="<?= $kurir['username'] ?>" data-email="<?= $kurir['email'] ?>" data-gender="<?= $kurir['gender'] ?>" data-birthday="<?= $kurir['birthday'] ?>" data-phone_number="<?= $kurir['phone_number'] ?>" data-address="<?= $kurir['address'] ?>" data-image="<?= $kurir['image'] ?>" data-no_ktp="<?= $kurir['no_ktp'] ?>" data-foto_ktp="<?= $kurir['foto_ktp'] ?>">Ubah</a>
+                                            <?php if ($member['kadaluarsa_paket']) : ?>
+                                                <?= date('j F Y', strtotime($member['kadaluarsa_paket'])) ?>
+                                            <?php else : ?>
+                                                -
+                                            <?php endif; ?>
+                                        </td>
+                                        <td><?= $member['username'] ?></td>
+                                        <td><?= $member['email'] ?></td>
+                                        <td><?= $member['gender'] ?></td>
+                                        <td><?= date('j F Y', strtotime($member['birthday'])) ?></td>
+                                        <td><?= $member['phone_number'] ?></td>
+                                        <td><img src="<?= base_url('assets/img/' . $member['image']) ?>" class="img-thumbnail img-fluid"></td>
+                                        <td>
+                                            <a href="#" class="badge bg-success btn-update" data-bs-toggle="modal" data-bs-target="#editModal" data-id="<?= $member['member_id'] ?>" data-user_id="<?= $member['user_id'] ?>" data-name="<?= $member['name'] ?>" data-username="<?= $member['username'] ?>" data-email="<?= $member['email'] ?>" data-gender="<?= $member['gender'] ?>" data-birthday="<?= $member['birthday'] ?>" data-phone_number="<?= $member['phone_number'] ?>" data-address="<?= $member['address'] ?>" data-image="<?= $member['image'] ?>" data-daerah_id="<?= $member['daerah_id'] ?>" data-nama_kost="<?= $member['nama_kost'] ?>" data-alamat="<?= $member['alamat'] ?>" data-paket_id="<?= $member['paket_id'] ?>" data-kadaluarsa_paket="<?= $member['kadaluarsa_paket'] ?>">Ubah</a>
 
-                                            <a href="<?= base_url("Laundry/kurir/delete/$kurir[id]"); ?>" class="badge bg-danger tombol-hapus" data-hapus="kurir">Hapus</a>
+                                            <a href="<?= base_url("Laundry/member/delete/$member[id]"); ?>" class="badge bg-danger tombol-hapus" data-hapus="member">Hapus</a>
                                         </td>
                                     </tr>
 
@@ -82,10 +92,10 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="addModalLabel">Tambah Data kurir</h1>
+                <h1 class="modal-title fs-5" id="addModalLabel">Tambah Data member</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('Laundry/kurir') ?>" method="post">
+            <form action="<?= base_url('Laundry/member') ?>" method="post">
                 <input type="hidden" name="aksi" value="add">
                 <div class="modal-body">
                     <div class="mb-3">
@@ -97,14 +107,47 @@
                         <?= form_error('name', '<small class="text-danger pl-3">', '</small>') ?>
                     </div>
                     <div class="mb-3">
-                        <label for="no_ktp" class="form-label">Nomor KTP</label>
-                        <input type="text" class="form-control <?= (form_error('no_ktp')) ? 'is-invalid' : '' ?>" id="no_ktp" name="no_ktp" placeholder="Nomor KTP" value="<?= set_value('no_ktp') ?>">
+                        <label for="daerah_id" class="form-label">Daerah</label>
+                        <select class="form-select <?= (form_error('daerah_id')) ? 'is-invalid' : '' ?>" id="daerah_id" name="daerah_id">
+                            <option value="" selected disabled>Pilih Daerah</option>
+                            <?php foreach ($daerahs as $daerah) : ?>
+                                <option value="<?= $daerah->id ?>" <?= (set_value('daerah_id') == $daerah->id) ? 'selected' : '' ?>><?= $daerah->nama ?></option>
+                            <?php endforeach; ?>
+                        </select>
                         <div class="form-control-icon">
                             <i class="bi bi-shield-lock"></i>
                         </div>
-                        <?= form_error('no_ktp', '<small class="text-danger pl-3">', '</small>') ?>
+                        <?= form_error('daerah_id', '<small class="text-danger pl-3">', '</small>') ?>
                     </div>
-
+                    <div class="mb-3">
+                        <label for="nama_kost" class="form-label">Nama Kost</label>
+                        <input type="text" class="form-control <?= (form_error('nama_kost')) ? 'is-invalid' : '' ?>" id="nama_kost" name="nama_kost" placeholder="Nama Kost" value="<?= set_value('nama_kost') ?>">
+                        <div class="form-control-icon">
+                            <i class="bi bi-shield-lock"></i>
+                        </div>
+                        <?= form_error('nama_kost', '<small class="text-danger pl-3">', '</small>') ?>
+                    </div>
+                    <!-- <div class="mb-3">
+                        <label for="alamat" class="form-label">Alamat Pengantaran</label>
+                        <input type="text" class="form-control <?= (form_error('alamat')) ? 'is-invalid' : '' ?>" id="alamat" name="alamat" placeholder="Alamat" value="<?= set_value('alamat') ?>">
+                        <div class="form-control-icon">
+                            <i class="bi bi-shield-lock"></i>
+                        </div>
+                        <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>') ?>
+                    </div> -->
+                    <div class="mb-3">
+                        <label for="paket_id" class="form-label">Paket</label>
+                        <select class="form-select <?= (form_error('paket_id')) ? 'is-invalid' : '' ?>" id="paket_id" name="paket_id">
+                            <option value="" selected disabled>Pilih Paket</option>
+                            <?php foreach ($pakets as $paket) : ?>
+                                <option value="<?= $paket->id ?>" <?= (set_value('paket_id') == $paket->id) ? 'selected' : '' ?>><?= $paket->paket ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <div class="form-control-icon">
+                            <i class="bi bi-shield-lock"></i>
+                        </div>
+                        <?= form_error('paket_id', '<small class="text-danger pl-3">', '</small>') ?>
+                    </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
                         <input type="email" class="form-control <?= (form_error('email')) ? 'is-invalid' : '' ?>" id="email" name="email" placeholder="Email Address" value="<?= set_value('email') ?>">
@@ -150,7 +193,7 @@
                         <?= form_error('phone_number', '<small class="text-danger pl-3">', '</small>') ?>
                     </div>
                     <div class="mb-3">
-                        <label for="address" class="form-label">Alamat</label>
+                        <label for="address" class="form-label">Alamat Pengantaran</label>
                         <textarea class="form-control <?= (form_error('address')) ? 'is-invalid' : '' ?>" id="address" name="address" rows="3" placeholder="Alamat"><?= set_value('address') ?></textarea>
                         <div class="form-control-icon">
                             <i class="bi bi-shield-lock"></i>
@@ -197,14 +240,15 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="editModalLabel">Edit Data kurir</h1>
+                <h1 class="modal-title fs-5" id="editModalLabel">Edit Data member</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('Laundry/kurir') ?>" method="post">
+            <form action="<?= base_url('Laundry/member') ?>" method="post">
                 <input type="hidden" name="aksi" value="update">
                 <div class="modal-body">
                     <input type="hidden" name="id" id="id">
                     <input type="hidden" name="user_id" id="user_id">
+                    <input type="hidden" name="kadaluarsa_paket" id="kadaluarsa_paket">
                     <div class="mb-3">
                         <label for="name" class="form-label">Nama Lengkap</label>
                         <input type="text" class="form-control <?= (form_error('name')) ? 'is-invalid' : '' ?>" id="name" name="name" placeholder="Nama Lengkap" value="<?= set_value('name') ?>">
@@ -214,12 +258,46 @@
                         <?= form_error('name', '<small class="text-danger pl-3">', '</small>') ?>
                     </div>
                     <div class="mb-3">
-                        <label for="no_ktp" class="form-label">Nomor KTP</label>
-                        <input type="text" class="form-control <?= (form_error('no_ktp')) ? 'is-invalid' : '' ?>" id="no_ktp" name="no_ktp" placeholder="Nomor KTP" value="<?= set_value('no_ktp') ?>">
+                        <label for="daerah_id" class="form-label">Daerah</label>
+                        <select class="form-select <?= (form_error('daerah_id')) ? 'is-invalid' : '' ?>" id="daerah_id" name="daerah_id">
+                            <option value="" selected disabled>Pilih Daerah</option>
+                            <?php foreach ($daerahs as $daerah) : ?>
+                                <option value="<?= $daerah->id ?>" <?= (set_value('daerah_id') == $daerah->id) ? 'selected' : '' ?>><?= $daerah->nama ?></option>
+                            <?php endforeach; ?>
+                        </select>
                         <div class="form-control-icon">
                             <i class="bi bi-shield-lock"></i>
                         </div>
-                        <?= form_error('no_ktp', '<small class="text-danger pl-3">', '</small>') ?>
+                        <?= form_error('daerah_id', '<small class="text-danger pl-3">', '</small>') ?>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nama_kost" class="form-label">Nama Kost</label>
+                        <input type="text" class="form-control <?= (form_error('nama_kost')) ? 'is-invalid' : '' ?>" id="nama_kost" name="nama_kost" placeholder="Nama Kost" value="<?= set_value('nama_kost') ?>">
+                        <div class="form-control-icon">
+                            <i class="bi bi-shield-lock"></i>
+                        </div>
+                        <?= form_error('nama_kost', '<small class="text-danger pl-3">', '</small>') ?>
+                    </div>
+                    <!-- <div class="mb-3">
+                        <label for="alamat" class="form-label">Alamat Pengantaran</label>
+                        <input type="text" class="form-control <?= (form_error('alamat')) ? 'is-invalid' : '' ?>" id="alamat" name="alamat" placeholder="Alamat" value="<?= set_value('alamat') ?>">
+                        <div class="form-control-icon">
+                            <i class="bi bi-shield-lock"></i>
+                        </div>
+                        <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>') ?>
+                    </div> -->
+                    <div class="mb-3">
+                        <label for="paket_id" class="form-label">Paket</label>
+                        <select class="form-select <?= (form_error('paket_id')) ? 'is-invalid' : '' ?>" id="paket_id" name="paket_id">
+                            <option value="" selected disabled>Pilih Paket</option>
+                            <?php foreach ($pakets as $paket) : ?>
+                                <option value="<?= $paket->id ?>" <?= (set_value('paket_id') == $paket->id) ? 'selected' : '' ?>><?= $paket->paket ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <div class="form-control-icon">
+                            <i class="bi bi-shield-lock"></i>
+                        </div>
+                        <?= form_error('paket_id', '<small class="text-danger pl-3">', '</small>') ?>
                     </div>
 
                     <div class="mb-3">
@@ -267,7 +345,7 @@
                         <?= form_error('phone_number', '<small class="text-danger pl-3">', '</small>') ?>
                     </div>
                     <div class="mb-3">
-                        <label for="address" class="form-label">Alamat</label>
+                        <label for="address" class="form-label">Alamat Pengantaran</label>
                         <textarea class="form-control <?= (form_error('address')) ? 'is-invalid' : '' ?>" id="address" name="address" rows="3" placeholder="Alamat"><?= set_value('address') ?></textarea>
                         <div class="form-control-icon">
                             <i class="bi bi-shield-lock"></i>
@@ -312,8 +390,16 @@
         var user_id = $(this).data('user_id');
         $(".modal-body  #user_id").val(user_id);
 
-        var no_ktp = $(this).data('no_ktp');
-        $(".modal-body  #no_ktp").val(no_ktp);
+        var daerah_id = $(this).data('daerah_id');
+        $(".modal-body  #daerah_id").val(daerah_id);
+        var nama_kost = $(this).data('nama_kost');
+        $(".modal-body  #nama_kost").val(nama_kost);
+        // var alamat = $(this).data('alamat');
+        // $(".modal-body  #alamat").val(alamat);
+        var paket_id = $(this).data('paket_id');
+        $(".modal-body  #paket_id").val(paket_id);
+        var kadaluarsa_paket = $(this).data('kadaluarsa_paket');
+        $(".modal-body  #kadaluarsa_paket").val(kadaluarsa_paket);
 
         var name = $(this).data('name');
         $(".modal-body  #name").val(name);
@@ -333,9 +419,5 @@
         var image = $(this).data('image');
         var baseURL = "<?= base_url() ?>/assets/img/";
         $(".img-preview").attr('src', baseURL + image);
-
-        // var foto_ktp = $(this).data('foto_ktp');
-        // var baseURL = "<?= base_url() ?>/assets/img/";
-        // $(".img-preview").attr('src', baseURL + foto_ktp);
     });
 </script>
