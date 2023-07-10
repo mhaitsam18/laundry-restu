@@ -102,6 +102,7 @@ class Member extends CI_Controller
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
                     member berhasil ditambahkan!
                     </div>');
+                $this->session->set_flashdata('flash', 'berhasil ditambahkan!');
             } elseif ($this->input->post('aksi') == "update") {
 
 
@@ -148,6 +149,7 @@ class Member extends CI_Controller
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
                 member berhasil diperbarui!
                     </div>');
+                $this->session->set_flashdata('flash', 'berhasil diperbarui!');
             }
             redirect($_SERVER['HTTP_REFERER']);
         }
@@ -160,6 +162,7 @@ class Member extends CI_Controller
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
         member berhasil dihapus!
 			</div>');
+        $this->session->set_flashdata('flash', 'berhasil dihapus!');
 
         redirect($_SERVER['HTTP_REFERER']);
     }

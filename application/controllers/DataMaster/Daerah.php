@@ -35,6 +35,7 @@ class Daerah extends CI_Controller
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
                     daerah berhasil ditambahkan!
                     </div>');
+                $this->session->set_flashdata('flash', 'berhasil ditambahkan!');
             } elseif ($this->input->post('aksi') == "update") {
 
                 $data = [
@@ -45,6 +46,7 @@ class Daerah extends CI_Controller
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
                 daerah berhasil diperbarui!
                     </div>');
+                $this->session->set_flashdata('flash', 'berhasil diperbarui!');
             }
             redirect($_SERVER['HTTP_REFERER']);
         }
@@ -57,6 +59,7 @@ class Daerah extends CI_Controller
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
         daerah berhasil dihapus!
 			</div>');
+        $this->session->set_flashdata('flash', 'berhasil dihapus!');
 
         redirect($_SERVER['HTTP_REFERER']);
     }

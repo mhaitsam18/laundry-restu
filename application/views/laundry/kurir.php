@@ -23,7 +23,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>" data-objek="Role"></div>
+                    <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>" data-objek="Kurir"></div>
                     <?= $this->session->flashdata('message'); ?>
                     <div class="table-responsive">
                         <table class="table table-hover" id="dataTableExample">
@@ -85,7 +85,7 @@
                 <h1 class="modal-title fs-5" id="addModalLabel">Tambah Data kurir</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('Laundry/kurir') ?>" method="post">
+            <form action="<?= base_url('Laundry/kurir') ?>" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="aksi" value="add">
                 <div class="modal-body">
                     <div class="mb-3">
@@ -200,7 +200,7 @@
                 <h1 class="modal-title fs-5" id="editModalLabel">Edit Data kurir</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('Laundry/kurir') ?>" method="post">
+            <form action="<?= base_url('Laundry/kurir') ?>" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="aksi" value="update">
                 <div class="modal-body">
                     <input type="hidden" name="id" id="id">

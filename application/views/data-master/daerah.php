@@ -23,7 +23,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>" data-objek="Role"></div>
+                    <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>" data-objek="Daerah"></div>
                     <?= $this->session->flashdata('message'); ?>
                     <div class="table-responsive">
                         <table class="table table-hover" id="dataTableExample">
