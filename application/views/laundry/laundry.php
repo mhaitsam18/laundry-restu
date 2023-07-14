@@ -53,7 +53,7 @@
                                         <td><?= $laundry['jenis_laundry'] ?></td>
                                         <td><?= $laundry['nama_kurir'] ?></td>
                                         <td><?= $laundry['berat'] ?></td>
-                                        <td>Rp.<?= number_format($laundry['harga'], 2, ',', '.') ?></td>
+                                        <td><?= ($laundry['harga']) ? 'Rp.' . number_format($laundry['harga'], 2, ',', '.') : '-' ?></td>
                                         <td><?= $laundry['status'] ?></td>
                                         <td><?= $laundry['testimoni'] ?></td>
                                         <td>
