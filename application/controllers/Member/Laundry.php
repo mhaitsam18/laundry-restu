@@ -33,6 +33,8 @@ class Laundry extends CI_Controller
             $this->form_validation->set_rules('daerah_id', 'Daerah', 'trim|required');
             $this->form_validation->set_rules('nama_kost', 'Nama Kost', 'trim|required');
             $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
+        } elseif($this->input->post('form') == "laundry"){
+            $this->form_validation->set_rules('member_id', 'Member', 'trim');
         }
         
         if ($this->form_validation->run() == false) {
