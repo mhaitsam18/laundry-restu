@@ -193,15 +193,17 @@
                 <input type="hidden" name="aksi" value="update">
                 <div class="modal-body">
                     <input type="hidden" name="id" id="id">
+                    <input type="hidden" name="member_id" id="member_id">
 
                     <div class="mb-3">
                         <label for="member_id" class="form-label">Member</label>
-                        <select class="select2-edit form-select  <?= (form_error('member_id')) ? 'is-invalid' : '' ?>" id="member_id" name="member_id">
+                        <!-- <select class="select2-edit form-select  <?= (form_error('member_id')) ? 'is-invalid' : '' ?>" id="member_id" name="member_id">
                             <option value="" selected disabled>Pilih Member</option>
                             <?php foreach ($members as $member) : ?>
                                 <option value="<?= $member->id ?>" <?= (set_value('member_id') == $member->id) ? 'selected' : '' ?>><?= $member->name ?></option>
                             <?php endforeach; ?>
-                        </select>
+                        </select> -->
+                        <input type="text" class="form-control  <?= (form_error('member_id')) ? 'is-invalid' : '' ?>" value="<?= $member->name ?>" readonly>
                         <div class="form-control-icon">
                             <i class="bi bi-shield-lock"></i>
                         </div>

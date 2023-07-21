@@ -48,20 +48,34 @@ class Laundry extends CI_Controller
             if ($this->input->post('aksi') == "add") {
                 $this->db->insert('laundry', [
                     'member_id' => $this->input->post('member_id'),
+                    'pengantaran' => $this->input->post('pengantaran'),
+                    'kurir_id' => $this->input->post('kurir_id'),
+                    'jenis_laundry_id' => $this->input->post('jenis_laundry_id'),
+                    'berat' => $this->input->post('berat'),
+                    'harga' => $this->input->post('harga'),
+                    'pembayaran' => $this->input->post('pembayaran'),
+                    'status' => $this->input->post('status'),
                 ]);
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-                Kurir Anda akan segera datang dan menghubungi Anda :)
+                Data Laundry tersimpan
                     </div>');
-                $this->session->set_flashdata('flash', 'Kurir Anda akan segera datang dan menghubungi Anda :)');
+                $this->session->set_flashdata('success', 'Data Laundry tersimpan');
             } elseif ($this->input->post('aksi') == "update") {
                 $this->db->where('id', $this->input->post('id'));
                 $this->db->update('laundry', [
-                    'testimoni' => $this->input->post('testimoni'),
+                    'member_id' => $this->input->post('member_id'),
+                    'pengantaran' => $this->input->post('pengantaran'),
+                    'kurir_id' => $this->input->post('kurir_id'),
+                    'jenis_laundry_id' => $this->input->post('jenis_laundry_id'),
+                    'berat' => $this->input->post('berat'),
+                    'harga' => $this->input->post('harga'),
+                    'pembayaran' => $this->input->post('pembayaran'),
+                    'status' => $this->input->post('status'),
                 ]);
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-                Testimoni terkirim
+                Data Laundry tersimpan
                     </div>');
-                $this->session->set_flashdata('flash', 'Testimoni terkirim');
+                $this->session->set_flashdata('success', 'Data Laundry tersimpan');
             }
             redirect($_SERVER['HTTP_REFERER']);
         }

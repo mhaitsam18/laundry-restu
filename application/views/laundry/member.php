@@ -55,7 +55,17 @@
                                         <td><?= $member['nama_daerah'] ?></td>
                                         <td><?= $member['nama_kost'] ?></td>
                                         <td><?= $member['address'] ?></td>
-                                        <td><?= $member['paket'] ?></td>
+                                        <td>
+                                            <?php if ($member['paket_id'] == 1): ?>
+                                                <span class="badge bg-primary"><?= $member['paket'] ?></span>
+                                            <?php elseif ($member['paket_id'] == 2): ?>
+                                                <span class="badge bg-success"><?= $member['paket'] ?></span>
+                                            <?php elseif ($member['paket_id'] == 3): ?>
+                                                <span class="badge bg-warning"><?= $member['paket'] ?></span>
+                                            <?php else: ?>
+                                                <?= $member['paket'] ?>
+                                            <?php endif; ?>
+                                        </td>
                                         <td>
                                             <?php if ($member['kadaluarsa_paket']) : ?>
                                                 <?= date('j F Y', strtotime($member['kadaluarsa_paket'])) ?>

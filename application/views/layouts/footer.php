@@ -99,6 +99,35 @@
         labelIdle: 'Seret & Lepaskan file Anda atau <span class="filepond--label-action"> Jelajahi </span>'
     });
 </script>
+<script>
+    const success = $('.flash-data').data('success');
+    if (success) {
+        //'Data ' + 
+        Swal.fire({
+            title: 'Berhasil',
+            text: success,
+            icon: 'success'
+        });
+    }
+    const error = $('.flash-data').data('error');
+    if (error) {
+        //'Data ' + 
+        Swal.fire({
+            title: 'Gagal',
+            text: error,
+            icon: 'error'
+        });
+    }
+    const warning = $('.flash-data').data('warning');
+    if (warning) {
+        //'Data ' + 
+        Swal.fire({
+            title: 'Perhatian',
+            text: warning,
+            icon: 'warning'
+        });
+    }
+</script>
 <script type="text/javascript">
     const flashData = $('.flash-data').data('flashdata');
     const objek = $('.flash-data').data('objek');

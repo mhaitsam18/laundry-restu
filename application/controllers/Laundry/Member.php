@@ -23,14 +23,34 @@ class Member extends CI_Controller
         $data['members'] = $this->db->get('member')->result_array();
         $data['daerahs'] = $this->db->get('daerah')->result();
         $data['pakets'] = $this->db->get('paket')->result();
-
+        
         $this->form_validation->set_rules('name', 'Name', 'required|trim');
-        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
-            'is_unique' => 'this email has already registered!'
-        ]);
-        $this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[user.username]', [
-            'is_unique' => 'this Username has already registered!'
-        ]);
+        if ($this->input->post('aksi') == 'update') {
+            $this->db->join('user', 'member.user_id = user.id');
+            $member = $this->db->get_where('member', ['member.id' => $this->input->post('id')])->row();
+            if ($member->email != $this->input->post('email')) {
+                $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]');
+            } else{
+                $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
+
+            }
+            if ($member->username != $this->input->post('username')) {
+                $this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[user.username]', [
+                    'is_unique' => 'this Username has already registered!'
+                ]);
+            } else{
+                $this->form_validation->set_rules('username', 'Username', 'required|trim', [
+                    'is_unique' => 'this Username has already registered!'
+                ]);
+            }
+        } else{
+            $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
+                'is_unique' => 'this email has already registered!'
+            ]);
+            $this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[user.username]', [
+                'is_unique' => 'this Username has already registered!'
+            ]);
+        }
         $this->form_validation->set_rules('gender', 'Gander', 'required|trim');
         $this->form_validation->set_rules('birthday', 'Birth Day', 'required|trim');
         $this->form_validation->set_rules('phone_number', 'Phone Number', 'required|trim');
