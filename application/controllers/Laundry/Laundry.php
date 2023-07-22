@@ -30,13 +30,16 @@ class Laundry extends CI_Controller
         $data['pakets'] = $this->db->get('paket')->result();
         $data['jenis_laundrys'] = $this->db->get('jenis_laundry')->result();
 
-        $this->db->select('laundry.*, jenis_laundry.jenis_laundry, user_member.name AS nama_member, user_kurir.name AS nama_kurir');
+        $this->db->select('laundry.*, jenis_laundry.jenis_laundry, jenis_laundry.tipe_laundry, user_member.name AS nama_member, user_kurir.name AS nama_kurir, paket.paket, member.paket_id');
         $this->db->join('jenis_laundry', 'laundry.jenis_laundry_id = jenis_laundry.id', 'left');
         $this->db->join('member', 'laundry.member_id = member.id', 'left');
+        $this->db->join('paket', 'member.paket_id = paket.id', 'left');
         $this->db->join('user AS user_member', 'member.user_id = user_member.id', 'left');
         $this->db->join('kurir', 'laundry.kurir_id = kurir.id', 'left');
         $this->db->join('user AS user_kurir', 'kurir.user_id = user_kurir.id', 'left');
         $data['laundrys'] = $this->db->get('laundry')->result_array();
+
+        $this->form_validation->set_rules('harga', 'Harga', 'required|trim');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('layouts/header', $data);
@@ -79,5 +82,16 @@ class Laundry extends CI_Controller
             }
             redirect($_SERVER['HTTP_REFERER']);
         }
+    }
+
+    public function hitungHarga()
+    {
+        $berat = $this->input->post('berat');
+        $this->db->select("(harga*$berat) AS total_harga");
+        echo $this->db->get_where('jenis_laundry', ['id' => $this->input->post('jenis_laundry_id')])->row()->total_harga;
+    }
+    public function ubahPaketId()
+    {
+        echo $this->db->get_where('member', ['id' => $this->input->post('member_id')])->row()->paket_id;
     }
 }

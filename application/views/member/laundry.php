@@ -198,7 +198,7 @@
                     <input type="hidden" name="id" id="id">
                     <div class="mb-3">
                         <label for="testimoni" class="form-label">Testimoni</label>
-                        <textarea class="form-control <?= (form_error('testimoni')) ? 'is-invalid' : '' ?>" id="testimoni" name="testimoni" rows="3" placeholder="Alamat"><?= set_value('testimoni') ?></textarea>
+                        <textarea class="form-control <?= (form_error('testimoni')) ? 'is-invalid' : '' ?>" id="testimoni" name="testimoni" rows="3" placeholder="Gimana Laundry nya?? :)"><?= set_value('testimoni') ?></textarea>
                         <div class="form-control-icon">
                             <i class="bi bi-shield-lock"></i>
                         </div>
