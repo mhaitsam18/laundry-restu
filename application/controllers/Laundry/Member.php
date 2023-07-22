@@ -7,6 +7,15 @@ class Member extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $members = $this->db->get('member')->result();
+        foreach ($members as $member) {
+            if ($member->kadaluarsa_paket < date('Y-m-d')) {
+                $this->db->where('id', $member->id);
+                $this->db->update('member', [
+                    'kadaluarsa_paket' => null
+                ]);
+            }
+        }
         is_logged_in();
         date_default_timezone_set('Asia/Jakarta');
     }
@@ -81,12 +90,21 @@ class Member extends CI_Controller
             $member = $this->db->get_where('member', [
                 'id' => $this->input->post('id')
             ])->row_array();
-            if ($this->input->post('paket_id') != 1) {
+            $paket = $this->db->get_where('paket', [
+                'id' => $this->input->post('paket_id')
+            ])->row_array();
+            if ($this->input->post('paket_id') != 1 && $this->input->post('paket_id') != $member['paket_id']) {
                 if(!$member['kadaluarsa_paket']){
-                    $kadaluarsa_paket = date('Y-m-d', strtotime('+30 days'));
+                    $kadaluarsa_paket = date('Y-m-d', strtotime('+1 month'));
                 } else {
                     $kadaluarsa_paket = $this->input->post('kadaluarsa_paket');
                 }
+                $this->db->insert('member_paket', [
+                    'member_id' => $this->input->post('id'),
+                    'paket_id' => $this->input->post('paket_id'),
+                    'harga_bayar' => $paket['harga'],
+                    'kadaluarsa_paket' => $kadaluarsa_paket,
+                ]);
             } else {
                 $kadaluarsa_paket = null;
             }

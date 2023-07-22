@@ -200,10 +200,10 @@
                         </div>
                         <?= form_error('status', '<small class="text-danger pl-3">', '</small>') ?>
                     </div>
-                    <div class="custom-control custom-checkbox">
+                    <!-- <div class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input" id="active" name="active" value="<?= date('Y-m-d H:i:s') ?>" checked>
                         <label class="custom-control-label" for="active">Aktif?</label>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
@@ -313,10 +313,10 @@
                         </div>
                         <?= form_error('status', '<small class="text-danger pl-3">', '</small>') ?>
                     </div>
-                    <div class="custom-control custom-checkbox">
+                    <!-- <div class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input" id="active" name="active" value="<?= date('Y-m-d H:i:s') ?>" checked>
                         <label class="custom-control-label" for="active">Aktif?</label>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>

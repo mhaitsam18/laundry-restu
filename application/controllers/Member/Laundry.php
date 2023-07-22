@@ -7,6 +7,15 @@ class Laundry extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $members = $this->db->get('member')->result();
+        foreach ($members as $member) {
+            if ($member->kadaluarsa_paket < date('Y-m-d')) {
+                $this->db->where('id', $member->id);
+                $this->db->update('member', [
+                    'kadaluarsa_paket' => null
+                ]);
+            }
+        }
         is_logged_in();
         date_default_timezone_set('Asia/Jakarta');
     }

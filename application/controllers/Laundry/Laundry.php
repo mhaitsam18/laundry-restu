@@ -7,6 +7,15 @@ class Laundry extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $members = $this->db->get('member')->result();
+        foreach ($members as $member) {
+            if ($member->kadaluarsa_paket < date('Y-m-d')) {
+                $this->db->where('id', $member->id);
+                $this->db->update('member', [
+                    'kadaluarsa_paket' => null
+                ]);
+            }
+        }
         is_logged_in();
         date_default_timezone_set('Asia/Jakarta');
     }
@@ -15,6 +24,9 @@ class Laundry extends CI_Controller
     {
         $data['title'] = "Laundry";
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+
+        
 
         $this->db->select('user.*, member.*, user.id as user_id, member.id as member_id, daerah.nama as nama_daerah, paket.paket');
         $this->db->join('user', 'member.user_id = user.id');
@@ -89,6 +101,11 @@ class Laundry extends CI_Controller
         $berat = $this->input->post('berat');
         $this->db->select("(harga*$berat) AS total_harga");
         echo $this->db->get_where('jenis_laundry', ['id' => $this->input->post('jenis_laundry_id')])->row()->total_harga;
+    }
+    
+    public function hitungHargaPaket()
+    {
+        echo $this->db->get_where('paket', ['id' => $this->input->post('paket_id')])->row()->harga;
     }
     public function ubahPaketId()
     {

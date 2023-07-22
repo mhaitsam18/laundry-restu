@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 22, 2023 at 07:40 AM
+-- Generation Time: Jul 22, 2023 at 10:30 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.1.17
 
@@ -146,9 +146,9 @@ CREATE TABLE `laundry` (
 --
 
 INSERT INTO `laundry` (`id`, `member_id`, `pengantaran`, `kurir_id`, `jenis_laundry_id`, `berat`, `harga`, `pembayaran`, `status`, `testimoni`, `created_at`, `updated_at`) VALUES
-(1, 1, 'pick up', 1, 8, 10.00, 0.00, NULL, 'diambil', 'makaseeh', '2023-07-14 16:12:35', '23:12:35'),
-(2, 1, 'pick up', NULL, 8, 10.00, 0.00, NULL, 'diambil', NULL, '2023-07-22 05:24:13', '12:24:13'),
-(3, 1, 'pick up', NULL, NULL, NULL, NULL, NULL, 'menunggu pengambilan', NULL, '2023-07-22 05:24:20', '12:24:20');
+(1, 1, 'pick up', 1, 9, 10.00, 0.00, NULL, 'diambil', 'makaseeh', '2023-07-14 16:12:35', '23:12:35'),
+(2, 1, 'pick up', NULL, 9, 10.00, 0.00, NULL, 'diambil', NULL, '2023-07-22 05:24:13', '12:24:13'),
+(3, 1, 'pick up', 1, 6, 1.00, 25000.00, NULL, 'selesai', NULL, '2023-07-22 05:24:20', '12:24:20');
 
 -- --------------------------------------------------------
 
@@ -173,7 +173,30 @@ CREATE TABLE `member` (
 --
 
 INSERT INTO `member` (`id`, `user_id`, `daerah_id`, `nama_kost`, `alamat`, `paket_id`, `kadaluarsa_paket`, `craeted_at`, `updated_at`) VALUES
-(1, 2, 1, 'Griya Mustika', 'Bandung', 2, '2023-08-20', '2023-07-10 11:28:13', '2023-07-10 11:28:13');
+(1, 2, 1, 'Griya Mustika', 'Bandung', 3, '2023-08-22', '2023-07-10 11:28:13', '2023-07-10 11:28:13');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `member_paket`
+--
+
+CREATE TABLE `member_paket` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `member_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `paket_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `harga_bayar` float(16,2) DEFAULT NULL,
+  `kadaluarsa_paket` date DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `member_paket`
+--
+
+INSERT INTO `member_paket` (`id`, `member_id`, `paket_id`, `harga_bayar`, `kadaluarsa_paket`, `created_at`, `updated_at`) VALUES
+(1, 1, 3, 150000.00, '2023-08-10', '2023-07-10 06:48:49', '2023-07-22 06:48:49');
 
 -- --------------------------------------------------------
 
@@ -198,7 +221,7 @@ CREATE TABLE `paket` (
 INSERT INTO `paket` (`id`, `paket`, `harga`, `deskripsi`, `lama`, `created_at`, `updated_at`) VALUES
 (1, 'Reguler', 0.00, 'Member non paket.  Harga Kiloan', 'Tidak ada batas waktu', '2023-07-10 11:05:05', '2023-07-10 11:05:05'),
 (2, 'Premium', 100000.00, 'Paket Bulanan Laundry 2 Hari beres', '1 Bulan', '2023-07-10 11:05:05', '2023-07-10 11:05:05'),
-(3, 'Platinum', 1500000.00, 'Paket Bulanan Laundry Besok beres', '1 Bulan', '2023-07-10 11:08:00', '2023-07-10 11:08:00');
+(3, 'Platinum', 150000.00, 'Paket Bulanan Laundry Besok beres', '1 Bulan', '2023-07-10 11:08:00', '2023-07-10 11:08:00');
 
 -- --------------------------------------------------------
 
@@ -334,7 +357,9 @@ INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `is_active
 (12, 6, 'Data Jenis Laundry', 'DataMaster/JenisLaundry', 'box', 1),
 (13, 6, 'Data Paket', 'DataMaster/Paket', 'box', 1),
 (14, 6, 'Data Daerah', 'DataMaster/Daerah', 'box', 1),
-(15, 4, 'Laundry', 'Member/Laundry', 'box', 1);
+(15, 4, 'Laundry', 'Member/Laundry', 'box', 1),
+(16, 5, 'Laporan', 'laundry/laporan', 'file-text', 1),
+(17, 5, 'Paket Member', 'Laundry/memberPaket', 'user-check', 1);
 
 -- --------------------------------------------------------
 
@@ -396,6 +421,14 @@ ALTER TABLE `member`
   ADD KEY `user_id` (`user_id`),
   ADD KEY `daerah_id` (`daerah_id`),
   ADD KEY `paket_id` (`paket_id`);
+
+--
+-- Indexes for table `member_paket`
+--
+ALTER TABLE `member_paket`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `paket_id` (`paket_id`),
+  ADD KEY `member_id` (`member_id`);
 
 --
 -- Indexes for table `paket`
@@ -486,6 +519,12 @@ ALTER TABLE `member`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `member_paket`
+--
+ALTER TABLE `member_paket`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `paket`
 --
 ALTER TABLE `paket`
@@ -519,7 +558,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
-  MODIFY `id` bigint(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `user_token`
@@ -558,6 +597,13 @@ ALTER TABLE `member`
   ADD CONSTRAINT `member_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `member_ibfk_2` FOREIGN KEY (`daerah_id`) REFERENCES `daerah` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `member_ibfk_3` FOREIGN KEY (`paket_id`) REFERENCES `paket` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `member_paket`
+--
+ALTER TABLE `member_paket`
+  ADD CONSTRAINT `member_paket_ibfk_1` FOREIGN KEY (`paket_id`) REFERENCES `paket` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `member_paket_ibfk_2` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `user`
