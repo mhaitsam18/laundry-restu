@@ -21,12 +21,30 @@ class Kurir extends CI_Controller
         $data['kurirs'] = $this->db->get('kurir')->result_array();
         
         $this->form_validation->set_rules('name', 'Name', 'required|trim');
-        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
-            'is_unique' => 'this email has already registered!'
-        ]);
-        $this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[user.username]', [
-            'is_unique' => 'this Username has already registered!'
-        ]);
+        if ($this->input->post('aksi') == "add") {
+            $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
+                'is_unique' => 'this email has already registered!'
+            ]);
+            $this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[user.username]', [
+                'is_unique' => 'this Username has already registered!'
+            ]);
+        } elseif ($this->input->post('aksi') == "update") {
+            $user_kurir = $this->db->get_where('user', ['id' => $this->input->post('user_id')])->row_array();
+            if ($user_kurir['email'] == $this->input->post('email')) {
+                $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
+            } else {
+                $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
+                    'is_unique' => 'this email has already registered!'
+                ]);
+            }
+            if ($user_kurir['username'] == $this->input->post('username')) {
+                $this->form_validation->set_rules('username', 'username', 'required|trim');
+            } else {
+                $this->form_validation->set_rules('username', 'username', 'required|trim|is_unique[user.username]', [
+                    'is_unique' => 'this username has already registered!'
+                ]);
+            }
+        }
         $this->form_validation->set_rules('gender', 'Gander', 'required|trim');
         $this->form_validation->set_rules('birthday', 'Birth Day', 'required|trim');
         $this->form_validation->set_rules('phone_number', 'Phone Number', 'required|trim');
