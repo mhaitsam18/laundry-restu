@@ -67,26 +67,6 @@
                                         <?= form_error('phone_number', '<small class="text-danger pl-3">', '</small>') ?>
                                     </div>
                                 </div>
-                                <div class="mb-3 row">
-                                    <label for="religion_id" class="col-sm-2 col-form-label">Religion</label>
-                                    <div class="col-sm-10">
-                                        <select class="form-control" name="religion_id" id="religion_id">
-                                            <option value="">Select Religion</option>
-                                            <?php foreach ($agama as $row) : ?>
-                                                <?php if ($row['agama'] == $user['agama']) : ?>
-                                                    <option value="<?= $row['id_agama'] ?>" selected>
-                                                        <?= $row['agama']; ?>
-                                                    </option>
-                                                <?php else : ?>
-                                                    <option value="<?= $row['id_agama'] ?>">
-                                                        <?= $row['agama']; ?>
-                                                    </option>
-                                                <?php endif ?>
-                                            <?php endforeach ?>
-                                        </select>
-                                        <?= form_error('religion_id', '<small class="text-danger pl-3">', '</small>') ?>
-                                    </div>
-                                </div>
 
                                 <div class="mb-3 row">
                                     <label for="address" class="col-sm-2 col-form-label">Address</label>
