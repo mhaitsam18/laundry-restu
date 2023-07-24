@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col-md-4 pe-md-0">
 				<div class="auth-side-wrapper">
-					<img src="<?= base_url('assets/img/app/mesin-cuci.jpg') ?>" class="img-fluid" alt="">
+					<img src="<?= base_url('assets/img/app/mesin-cuci.jpg') ?>" class="w-100" alt="">
 				</div>
 			</div>
 			<div class="col-md-8 ps-md-0">
