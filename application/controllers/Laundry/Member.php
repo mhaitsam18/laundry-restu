@@ -121,7 +121,7 @@ class Member extends CI_Controller
                     'address' => htmlspecialchars($this->input->post('address', true)),
                     'image' => htmlspecialchars($this->input->post('image', true)),
                     'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
-                    'role_id' => 3,
+                    'role_id' => 2,
                     'is_active' => 1,
                     'date_created' => time(),
                 ];
