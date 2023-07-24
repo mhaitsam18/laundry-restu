@@ -21,6 +21,24 @@
 	</div>
 
 	<div class="row">
+		<div class="row" style="margin-top: 300px;">
+			<div class="col-12 col-xl-12 stretch-card">
+				<div class="row flex-grow-1">
+					<div class="col-md-12 grid-margin stretch-card">
+						<div class="card">
+							<div class="card-body text-center" style="background-color: #61A6F0;">
+								<h1 class="text-light">SELAMAT DATANG DI DASHBOARD LAUNDRY RESTU, <?= $user['name'] ?>!!</h1>
+							</div>
+							<div class="card-body text-justify">
+								<p class="fs-3">
+									"Laundry Restu" adalah sebuah kedai layanan laundry yang berlokasi di tengah pusat kota. Kedai ini telah menjadi tempat pilihan bagi banyak orang untuk mencuci dan merawat pakaian mereka sejak didirikan beberapa tahun yang lalu. Dengan kombinasi layanan berkualitas, pelayanan ramah, dan harga yang kompetitif, "Laundry Restu" telah berhasil membangun reputasi yang kuat di kalangan pelanggan setianya.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<!-- <div class="col-12 col-xl-12 stretch-card">
 			<div class="row flex-grow-1">
 				<div class="col-md-4 grid-margin stretch-card">
