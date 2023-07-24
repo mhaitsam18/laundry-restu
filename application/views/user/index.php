@@ -26,7 +26,7 @@
 				<div class="row flex-grow-1">
 					<div class="col-md-12 grid-margin stretch-card">
 						<div class="card">
-							<div class="card-body text-center bg-primary">
+							<div class="card-body text-center bg-primary" style="background-color: #e62572;">
 								<h1 class="text-light">SELAMAT DATANG DI DASHBOARD LAUNDRY RESTU, <?= $user['name'] ?>!!</h1>
 							</div>
 							<div class="card-body text-justify">

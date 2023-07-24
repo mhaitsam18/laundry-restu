@@ -4,7 +4,7 @@
 	}
 </style>
 <nav class="sidebar">
-	<div class="sidebar-header sidebar-h" style="background-color: #F2F2F2;">
+	<div class="sidebar-header sidebar-h">
 		<a href="#" class="sidebar-brand">
 			<?= app_brand() ?>
 			<!-- <img src="<?= base_url('/assets/img/logo/sidebar-logo.png') ?>" class="" alt="" style="margin-left: -40px;"> -->
@@ -15,7 +15,7 @@
 			<span></span>
 		</div>
 	</div>
-	<div class="sidebar-body sidebar-h" id="background-sidebar">
+	<div class="sidebar-body sidebar-h bg-primary" id="background-sidebar">
 		<ul class="nav">
 			<?php
 			$role_id = $this->session->userdata('role_id');

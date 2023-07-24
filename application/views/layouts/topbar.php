@@ -1,10 +1,10 @@
 <!-- partial:partials/_navbar.html -->
-<nav class="navbar" style="background-color: #F2F2F2;">
+<nav class="navbar">
     <a href="#" class="sidebar-toggler">
         <i data-feather="menu"></i>
     </a>
     <div class="navbar-content">
-        <div class="align-self-center" style="background-color: #F2F2F2;">
+        <div class="align-self-center">
             <hr>
         </div>
         <ul class="navbar-nav">
