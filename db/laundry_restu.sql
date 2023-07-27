@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 22, 2023 at 10:30 AM
+-- Generation Time: Jul 24, 2023 at 08:13 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.1.17
 
@@ -20,6 +20,29 @@ SET time_zone = "+00:00";
 --
 -- Database: `laundry_restu`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `beban`
+--
+
+CREATE TABLE `beban` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `beban` varchar(255) DEFAULT NULL,
+  `harga` float(16,2) DEFAULT NULL,
+  `tanggal_transaksi` date DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `beban`
+--
+
+INSERT INTO `beban` (`id`, `user_id`, `beban`, `harga`, `tanggal_transaksi`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Listrik', 500000.00, '2023-07-25', '2023-07-24 18:12:04', '2023-07-24 18:12:04');
 
 -- --------------------------------------------------------
 
@@ -250,7 +273,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `name`, `email`, `gender`, `birthday`, `phone_number`, `address`, `image`, `password`, `role_id`, `is_active`, `date_created`) VALUES
-(1, 'administrator', 'Admin', 'admin@gmail.com', 'Perempuan', '1999-02-18', '081214222446', 'Jl. Bandung ', 'profile/administrator.png', '$2y$10$54Ajl0R.ArBF45hyXCsJZOnTdLzoegtv9nJbBRs3ICk1QBv1kS5yW', 1, 1, 1614472317),
+(1, 'administrator', 'Admin', 'admin@gmail.com', 'Perempuan', '1999-02-18', '08121422244', 'Jl. Bandung ', 'profile/administrator.png', '$2y$10$54Ajl0R.ArBF45hyXCsJZOnTdLzoegtv9nJbBRs3ICk1QBv1kS5yW', 1, 1, 1614472317),
 (2, 'member1', 'Member', 'member@gmail.com', 'Perempuan', '2002-06-12', '082114832111', 'Bandung', 'profile/member.png', '$2y$10$54Ajl0R.ArBF45hyXCsJZOnTdLzoegtv9nJbBRs3ICk1QBv1kS5yW', 2, 1, 1614472317),
 (3, 'kurir1', 'Kurir', 'kurir@gmail.com', 'Laki-laki', '1970-10-22', '081234567890', 'Bandung', 'profile/kurir.png', '$2y$10$54Ajl0R.ArBF45hyXCsJZOnTdLzoegtv9nJbBRs3ICk1QBv1kS5yW', 3, 1, 1614472317);
 
@@ -359,7 +382,8 @@ INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `is_active
 (14, 6, 'Data Daerah', 'DataMaster/Daerah', 'box', 1),
 (15, 4, 'Laundry', 'Member/Laundry', 'box', 1),
 (16, 5, 'Laporan', 'laundry/laporan', 'file-text', 1),
-(17, 5, 'Paket Member', 'Laundry/memberPaket', 'user-check', 1);
+(17, 5, 'Paket Member', 'Laundry/memberPaket', 'user-check', 1),
+(18, 5, 'Beban Pengeluaran', 'Laundry/Beban', 'box', 0);
 
 -- --------------------------------------------------------
 
@@ -377,6 +401,13 @@ CREATE TABLE `user_token` (
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `beban`
+--
+ALTER TABLE `beban`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `daerah`
@@ -483,6 +514,12 @@ ALTER TABLE `user_token`
 --
 
 --
+-- AUTO_INCREMENT for table `beban`
+--
+ALTER TABLE `beban`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `daerah`
 --
 ALTER TABLE `daerah`
@@ -558,7 +595,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
-  MODIFY `id` bigint(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `user_token`
@@ -569,6 +606,12 @@ ALTER TABLE `user_token`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `beban`
+--
+ALTER TABLE `beban`
+  ADD CONSTRAINT `beban_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `item`

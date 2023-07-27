@@ -42,6 +42,10 @@ class Laporan extends CI_Controller
         $this->db->where('YEAR(member_paket.created_at)', $this->input->post('tahun'));
         $member_pakets = $this->db->get_where('member_paket')->result();
 
+        $this->db->where('MONTH(tanggal_transaksi)', $this->input->post('bulan'));
+        $this->db->where('YEAR(tanggal_transaksi)', $this->input->post('tahun'));
+        $bebans = $this->db->get_where('beban')->result();
+
         $laporan = [];
         $index = 0;
         foreach ($laundrys as $laundry) {
@@ -78,6 +82,15 @@ class Laporan extends CI_Controller
                 $index++;
             }
         }
+        // foreach($bebans as $beban){
+        //     $laporan[$index]['tanggal'] = $beban->tanggal_transaksi;
+        //     $laporan[$index]['waktu_transaksi'] = cari_tanggal($beban->tanggal_transaksi);
+        //     $laporan[$index]['member'] = '-';
+        //     $laporan[$index]['pembayaran'] = $beban->beban;
+        //     $laporan[$index]['harga_rupiah'] = '- Rp.' . number_format($beban->harga, 2, ',', '.');
+        //     $laporan[$index]['harga'] = -$beban->harga;
+        //     $index++;
+        // }
 
         // Mengambil kolom 'tanggal' dari array $laporan untuk dijadikan acuan pengurutan
         foreach ($laporan as $key => $row) {
