@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 24, 2023 at 08:13 PM
+-- Generation Time: Jul 28, 2023 at 08:10 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.1.17
 
@@ -42,7 +42,13 @@ CREATE TABLE `beban` (
 --
 
 INSERT INTO `beban` (`id`, `user_id`, `beban`, `harga`, `tanggal_transaksi`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Listrik', 500000.00, '2023-07-25', '2023-07-24 18:12:04', '2023-07-24 18:12:04');
+(1, 1, 'Listrik', 500000.00, '2023-07-25', '2023-07-24 18:12:04', '2023-07-24 18:12:04'),
+(2, 1, 'Gaji Mae tukang cuci', 800000.00, '2023-07-25', '2023-07-27 10:08:18', '2023-07-27 10:08:18'),
+(3, 1, 'Servis Mesin Cuci', 160000.00, '2023-07-25', '2023-07-27 10:08:18', '2023-07-27 10:08:18'),
+(4, 1, '10 dus Detergen', 500000.00, '2023-07-25', '2023-07-27 10:08:18', '2023-07-27 10:08:18'),
+(5, 1, '1 botol byclean', 40000.00, '2023-07-25', '2023-07-27 10:08:18', '2023-07-27 10:08:18'),
+(6, 1, 'Gaji Dadang kurir', 800000.00, '2023-07-25', '2023-07-27 10:08:18', '2023-07-27 10:08:18'),
+(7, 1, 'Gaji Somad kasir', 800000.00, '2023-07-25', '2023-07-27 10:08:18', '2023-07-27 10:08:18');
 
 -- --------------------------------------------------------
 
@@ -273,7 +279,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `name`, `email`, `gender`, `birthday`, `phone_number`, `address`, `image`, `password`, `role_id`, `is_active`, `date_created`) VALUES
-(1, 'administrator', 'Admin', 'admin@gmail.com', 'Perempuan', '1999-02-18', '08121422244', 'Jl. Bandung ', 'profile/administrator.png', '$2y$10$54Ajl0R.ArBF45hyXCsJZOnTdLzoegtv9nJbBRs3ICk1QBv1kS5yW', 1, 1, 1614472317),
+(1, 'administrator', 'Admin', 'admin@gmail.com', 'Perempuan', '1999-02-18', '08121422244', 'Jl. Bandung ', 'profile/auth-happy1.png', '$2y$10$54Ajl0R.ArBF45hyXCsJZOnTdLzoegtv9nJbBRs3ICk1QBv1kS5yW', 1, 1, 1614472317),
 (2, 'member1', 'Member', 'member@gmail.com', 'Perempuan', '2002-06-12', '082114832111', 'Bandung', 'profile/member.png', '$2y$10$54Ajl0R.ArBF45hyXCsJZOnTdLzoegtv9nJbBRs3ICk1QBv1kS5yW', 2, 1, 1614472317),
 (3, 'kurir1', 'Kurir', 'kurir@gmail.com', 'Laki-laki', '1970-10-22', '081234567890', 'Bandung', 'profile/kurir.png', '$2y$10$54Ajl0R.ArBF45hyXCsJZOnTdLzoegtv9nJbBRs3ICk1QBv1kS5yW', 3, 1, 1614472317);
 
@@ -517,7 +523,7 @@ ALTER TABLE `user_token`
 -- AUTO_INCREMENT for table `beban`
 --
 ALTER TABLE `beban`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `daerah`
