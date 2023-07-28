@@ -23,7 +23,7 @@
 								<i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
 							</button>
 							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton7">
-								<a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="eye" class="icon-sm me-2"></i> <span class="">Tambah</span></a>
+								<a class="dropdown-item d-flex align-items-center" href="javascript:;" data-bs-toggle="modal" data-bs-target="#setRoleModal"><i data-feather="eye" class="icon-sm me-2"></i> <span class="">Tambah</span></a>
 							</div>
 						</div>
 					</div>
