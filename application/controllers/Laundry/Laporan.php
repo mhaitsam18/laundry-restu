@@ -82,15 +82,15 @@ class Laporan extends CI_Controller
                 $index++;
             }
         }
-        // foreach($bebans as $beban){
-        //     $laporan[$index]['tanggal'] = $beban->tanggal_transaksi;
-        //     $laporan[$index]['waktu_transaksi'] = cari_tanggal($beban->tanggal_transaksi);
-        //     $laporan[$index]['member'] = '-';
-        //     $laporan[$index]['pembayaran'] = $beban->beban;
-        //     $laporan[$index]['harga_rupiah'] = '- Rp.' . number_format($beban->harga, 2, ',', '.');
-        //     $laporan[$index]['harga'] = -$beban->harga;
-        //     $index++;
-        // }
+        foreach($bebans as $beban){
+            $laporan[$index]['tanggal'] = $beban->tanggal_transaksi;
+            $laporan[$index]['waktu_transaksi'] = cari_tanggal($beban->tanggal_transaksi);
+            $laporan[$index]['member'] = '-';
+            $laporan[$index]['pembayaran'] = $beban->beban;
+            $laporan[$index]['harga_rupiah'] = '- Rp.' . number_format($beban->harga, 2, ',', '.');
+            $laporan[$index]['harga'] = -$beban->harga;
+            $index++;
+        }
 
         // Mengambil kolom 'tanggal' dari array $laporan untuk dijadikan acuan pengurutan
         foreach ($laporan as $key => $row) {
