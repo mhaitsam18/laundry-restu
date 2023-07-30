@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 28, 2023 at 08:10 AM
+-- Generation Time: Jul 30, 2023 at 11:26 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.1.17
 
@@ -389,7 +389,9 @@ INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `is_active
 (15, 4, 'Laundry', 'Member/Laundry', 'box', 1),
 (16, 5, 'Laporan', 'laundry/laporan', 'file-text', 1),
 (17, 5, 'Paket Member', 'Laundry/memberPaket', 'user-check', 1),
-(18, 5, 'Beban Pengeluaran', 'Laundry/Beban', 'box', 0);
+(18, 5, 'Beban Pengeluaran', 'Laundry/Beban', 'box', 1),
+(19, NULL, 'Kelola Tema', NULL, NULL, 1),
+(20, NULL, 'Kelola Web', NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -601,7 +603,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
-  MODIFY `id` bigint(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `user_token`

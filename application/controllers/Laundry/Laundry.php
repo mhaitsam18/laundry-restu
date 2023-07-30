@@ -96,6 +96,18 @@ class Laundry extends CI_Controller
         }
     }
 
+    public function delete($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('laundry');
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+        laundry berhasil dihapus!
+			</div>');
+        $this->session->set_flashdata('flash', 'Data laundry berhasil dihapus!');
+
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+
     public function hitungHarga()
     {
         $berat = $this->input->post('berat');

@@ -75,7 +75,7 @@
                 <input type="hidden" name="aksi" value="add">
                 <div class="modal-body modal-add">
                     <div class="mb-3">
-                        <label for="beban" class="form-label">Harga Bayar</label>
+                        <label for="beban" class="form-label">Item</label>
                         <input type="text" step="any" class="form-control <?= (form_error('beban')) ? 'is-invalid' : '' ?>" name="beban" id="beban">
                         <div class="form-control-icon">
                             <i class="bi bi-shield-lock"></i>
