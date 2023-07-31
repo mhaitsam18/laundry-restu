@@ -64,7 +64,7 @@
                                             <a href="" class="badge bg-warning setRoleButton" data-bs-toggle="modal" data-bs-target="#setRoleModal" data-id="<?= $key['uid'] ?>">Set Role</a>
 
                                             <a href="#" class="badge bg-success btn-update" data-bs-toggle="modal" data-bs-target="#editModal" data-id="<?= $key['uid'] ?>" data-username="<?= $key['username'] ?>" data-name="<?= $key['name'] ?>" data-email="<?= $key['email'] ?>" data-gender="<?= $key['gender'] ?>" data-birthday="<?= $key['birthday'] ?>" data-phone_number="<?= $key['phone_number'] ?>" data-address="<?= $key['address'] ?>" data-image="<?= $key['image'] ?>" data-role_id="<?= $key['role_id'] ?>">Ubah</a>
-                                            <a href="<?= base_url("Admin/deleteUser/$key[id]"); ?>" class="badge bg-danger tombol-hapus" data-hapus="user">Hapus</a>
+                                            <a href="<?= base_url("Admin/deleteUser/$key[uid]"); ?>" class="badge bg-danger tombol-hapus" data-hapus="user">Hapus</a>
                                         </td>
                                     </tr>
                                     <?php $no++; ?>
