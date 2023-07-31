@@ -44,6 +44,8 @@ class Admin extends CI_Controller {
 		}
 	}
 
+
+
 	public function dataUser()
 	{
 		$data['title'] = "Data User";
@@ -52,12 +54,110 @@ class Admin extends CI_Controller {
 		$this->db->select('*, user_role.id AS rid, user.id AS uid');
 		$this->db->from('user');
 		$this->db->join('user_role', 'user_role.id = user.role_id');
+		$this->db->where('user.id !=', 0);
 		$data['user_data'] = $this->db->get()->result_array();
-		$this->load->view('layouts/header', $data);
-		$this->load->view('layouts/sidebar', $data);
-		$this->load->view('layouts/topbar', $data);
-		$this->load->view('admin/data-user', $data);
-		$this->load->view('layouts/footer');
+
+		$this->form_validation->set_rules('name', 'Name', 'required|trim');
+
+
+		if ($this->input->post('aksi') == "add") {
+			$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
+				'is_unique' => 'this email has already registered!'
+			]);
+			$this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[user.username]', [
+				'is_unique' => 'this Username has already registered!'
+			]);
+		} elseif ($this->input->post('aksi') == "update") {
+			$cekuser = $this->db->get_where('user', ['id' => $this->input->post('id')])->row();
+			if ($cekuser->email !== $this->input->post('email')) {
+				$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
+					'is_unique' => 'this email has already registered!'
+				]);
+			} else {
+				$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
+			}
+			if ($cekuser->username !== $this->input->post('username')) {
+				$this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[user.username]', [
+					'is_unique' => 'this Username has already registered!'
+				]);
+			} else {
+				$this->form_validation->set_rules('username', 'Username', 'required|trim');
+			}
+		}
+		$this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[3]', [
+			'matches' => 'password dont match!',
+			'min_length' => 'password too short!'
+		]);
+		// $this->form_validation->set_rules('role_id','Role', 'required|trim');
+		$this->form_validation->set_rules('gender', 'Gander', 'required|trim');
+		$this->form_validation->set_rules('birthday', 'Birth Day', 'required|trim');
+		$this->form_validation->set_rules('phone_number', 'Phone Number', 'required|trim');
+		$this->form_validation->set_rules('address', 'Address', 'required|trim');
+		// 
+		$this->form_validation->set_rules('password2', 'Confrim Password', 'required|trim|matches[password1]');
+		if ($this->form_validation->run() == false) {
+			$this->load->view('layouts/header', $data);
+			$this->load->view('layouts/sidebar', $data);
+			$this->load->view('layouts/topbar', $data);
+			$this->load->view('admin/data-user', $data);
+			$this->load->view('layouts/footer');
+		} else {
+			if ($this->input->post('aksi') == "add") {
+				$data = [
+					'name' => htmlspecialchars($this->input->post('name', true)),
+					'email' => htmlspecialchars($this->input->post('email', true)),
+					'username' => htmlspecialchars($this->input->post('username', true)),
+					'gender' => htmlspecialchars($this->input->post('gender', true)),
+					'birthday' => htmlspecialchars($this->input->post('birthday', true)),
+					'phone_number' => htmlspecialchars($this->input->post('phone_number', true)),
+					'address' => htmlspecialchars($this->input->post('address', true)),
+					'image' => 'profile/default.png',
+					'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
+					// 'role_id' => htmlspecialchars($this->input->post('role_id', true)),
+					'role_id' => htmlspecialchars($this->input->post('role_id', true)),
+					'is_active' => 1,
+					// 'is_active' => 0,
+					'date_created' => time(),
+				];
+				$this->db->insert('user', $data);
+
+				$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+                    Data Users telah disimpan!
+                    </div>');
+				$this->session->set_flashdata('success', 'Data Users telah disimpan!!');
+			} elseif ($this->input->post('aksi') == "update") {
+				$data = [
+					'name' => htmlspecialchars($this->input->post('name', true)),
+					'email' => htmlspecialchars($this->input->post('email', true)),
+					'username' => htmlspecialchars($this->input->post('username', true)),
+					'gender' => htmlspecialchars($this->input->post('gender', true)),
+					'birthday' => htmlspecialchars($this->input->post('birthday', true)),
+					'phone_number' => htmlspecialchars($this->input->post('phone_number', true)),
+					'address' => htmlspecialchars($this->input->post('address', true)),
+					'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
+					'role_id' => htmlspecialchars($this->input->post('role_id', true)),
+				];
+				$this->db->where('id', $this->input->post('id'));
+				$this->db->update('user', $data);
+				$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+                Data User berhasil diperbarui!
+                    </div>');
+				$this->session->set_flashdata('success', 'Data user berhasil diperbarui!');
+			}
+			redirect($_SERVER['HTTP_REFERER']);
+		}
+	}
+
+	public function deleteUser($id)
+	{
+		$this->db->where('id', $id);
+		$this->db->delete('user');
+		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+        data user berhasil dihapus!
+			</div>');
+		$this->session->set_flashdata('flash', 'data user berhasil dihapus!');
+
+		redirect($_SERVER['HTTP_REFERER']);
 	}
 
 	public function setRole()
