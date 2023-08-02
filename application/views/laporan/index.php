@@ -8,7 +8,7 @@
 
 
     <div class="row">
-        <div class="col-4 col-xl-4 stretch-card">
+        <!-- <div class="col-4 col-xl-4 stretch-card">
             <div class="card">
                 <div class="card-body p-5">
                     <h3 class=" mb-3">Laporan Laba Rugi</h3>
@@ -45,7 +45,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="col-4 col-xl-4 stretch-card">
             <div class="card">
                 <div class="card-body p-5">
