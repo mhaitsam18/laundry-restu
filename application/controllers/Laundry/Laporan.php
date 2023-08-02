@@ -23,7 +23,6 @@ class Laporan extends CI_Controller
 
     public function print()
     {
-        $data['title'] = "Laporan";
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->db->select('laundry.*, user.name, jenis_laundry.jenis_laundry, jenis_laundry.tipe_laundry');
@@ -48,48 +47,99 @@ class Laporan extends CI_Controller
 
         $laporan = [];
         $index = 0;
-        foreach ($laundrys as $laundry) {
-            if ($laundry->harga > 0) {
-                $laporan[$index]['tanggal'] = $laundry->created_at;
-                $laporan[$index]['waktu_transaksi'] = cari_tanggal($laundry->created_at);
-                $laporan[$index]['member'] = $laundry->name;
-                if ($laundry->tipe_laundry == 'laundry berat') {
-                    $satuan = 'kg';
-                } elseif ($laundry->tipe_laundry == 'laundry tetap') {
-                    $satuan = 'pcs';
-                } else{
-                    $satuan = '-';
+
+        if ($this->input->post('aksi') == 'transaksi') {
+            $data['judul_laporan'] = "transaksi";
+            foreach ($laundrys as $laundry) {
+                if ($laundry->harga > 0) {
+                    $laporan[$index]['tanggal'] = $laundry->created_at;
+                    $laporan[$index]['waktu_transaksi'] = cari_tanggal($laundry->created_at);
+                    $laporan[$index]['member'] = $laundry->name;
+                    if ($laundry->tipe_laundry == 'laundry berat') {
+                        $satuan = 'kg';
+                    } elseif ($laundry->tipe_laundry == 'laundry tetap') {
+                        $satuan = 'pcs';
+                    } else {
+                        $satuan = '-';
+                    }
+                    $laporan[$index]['pembayaran'] = $laundry->jenis_laundry . ' ' . $laundry->berat . ' ' . $satuan;
+                    if ($laundry->harga !== null) {
+                        $laporan[$index]['harga_rupiah'] = 'Rp.' . number_format($laundry->harga, 2, ',', '.');
+                        $laporan[$index]['harga'] = $laundry->harga;
+                    } else {
+                        $laporan[$index]['harga_rupiah'] = 'Rp. -';
+                        $laporan[$index]['harga'] = 0;
+                    }
+                    $index++;
                 }
-                $laporan[$index]['pembayaran'] = $laundry->jenis_laundry.' '.$laundry->berat.' '.$satuan;
-                if ($laundry->harga !== null) {
-                    $laporan[$index]['harga_rupiah'] = 'Rp.'.number_format($laundry->harga,2,',','.');
-                    $laporan[$index]['harga'] = $laundry->harga;
-                } else{
-                    $laporan[$index]['harga_rupiah'] = 'Rp. -';
-                    $laporan[$index]['harga'] = 0;
+            }
+            foreach ($member_pakets as $member_paket) {
+                if ($member_paket->harga_bayar > 0) {
+                    $laporan[$index]['tanggal'] = $member_paket->created_at;
+                    $laporan[$index]['waktu_transaksi'] = cari_tanggal($member_paket->created_at);
+                    $laporan[$index]['member'] = $member_paket->name;
+                    $laporan[$index]['pembayaran'] = 'Paket ' . $member_paket->paket . ' ' . $member_paket->lama;
+                    $laporan[$index]['harga_rupiah'] = 'Rp.' . number_format($member_paket->harga_bayar, 2, ',', '.');
+                    $laporan[$index]['harga'] = $member_paket->harga_bayar;
+                    $index++;
                 }
+            }
+            foreach ($bebans as $beban) {
+                $laporan[$index]['tanggal'] = $beban->tanggal_transaksi;
+                $laporan[$index]['waktu_transaksi'] = cari_tanggal($beban->tanggal_transaksi);
+                $laporan[$index]['member'] = '-';
+                $laporan[$index]['pembayaran'] = $beban->beban;
+                $laporan[$index]['harga_rupiah'] = '- Rp.' . number_format($beban->harga, 2, ',', '.');
+                $laporan[$index]['harga'] = -$beban->harga;
                 $index++;
             }
-        }
-        foreach ($member_pakets as $member_paket) {
-            if ($member_paket->harga_bayar > 0) {
-                $laporan[$index]['tanggal'] = $member_paket->created_at;
-                $laporan[$index]['waktu_transaksi'] = cari_tanggal($member_paket->created_at);
-                $laporan[$index]['member'] = $member_paket->name;
-                $laporan[$index]['pembayaran'] = 'Paket '.$member_paket->paket.' '.$member_paket->lama;
-                $laporan[$index]['harga_rupiah'] = 'Rp.'.number_format($member_paket->harga_bayar,2,',','.');
-                $laporan[$index]['harga'] = $member_paket->harga_bayar;
+        } elseif ($this->input->post('aksi') == 'pemasukan') {
+            $data['judul_laporan'] = "pemasukan";
+            foreach ($laundrys as $laundry) {
+                if ($laundry->harga > 0) {
+                    $laporan[$index]['tanggal'] = $laundry->created_at;
+                    $laporan[$index]['waktu_transaksi'] = cari_tanggal($laundry->created_at);
+                    $laporan[$index]['member'] = $laundry->name;
+                    if ($laundry->tipe_laundry == 'laundry berat') {
+                        $satuan = 'kg';
+                    } elseif ($laundry->tipe_laundry == 'laundry tetap') {
+                        $satuan = 'pcs';
+                    } else {
+                        $satuan = '-';
+                    }
+                    $laporan[$index]['pembayaran'] = $laundry->jenis_laundry . ' ' . $laundry->berat . ' ' . $satuan;
+                    if ($laundry->harga !== null) {
+                        $laporan[$index]['harga_rupiah'] = 'Rp.' . number_format($laundry->harga, 2, ',', '.');
+                        $laporan[$index]['harga'] = $laundry->harga;
+                    } else {
+                        $laporan[$index]['harga_rupiah'] = 'Rp. -';
+                        $laporan[$index]['harga'] = 0;
+                    }
+                    $index++;
+                }
+            }
+            foreach ($member_pakets as $member_paket) {
+                if ($member_paket->harga_bayar > 0) {
+                    $laporan[$index]['tanggal'] = $member_paket->created_at;
+                    $laporan[$index]['waktu_transaksi'] = cari_tanggal($member_paket->created_at);
+                    $laporan[$index]['member'] = $member_paket->name;
+                    $laporan[$index]['pembayaran'] = 'Paket ' . $member_paket->paket . ' ' . $member_paket->lama;
+                    $laporan[$index]['harga_rupiah'] = 'Rp.' . number_format($member_paket->harga_bayar, 2, ',', '.');
+                    $laporan[$index]['harga'] = $member_paket->harga_bayar;
+                    $index++;
+                }
+            }
+        } elseif ($this->input->post('aksi') == 'pengeluaran') {
+            $data['judul_laporan'] = "pengeluaran";
+            foreach ($bebans as $beban) {
+                $laporan[$index]['tanggal'] = $beban->tanggal_transaksi;
+                $laporan[$index]['waktu_transaksi'] = cari_tanggal($beban->tanggal_transaksi);
+                $laporan[$index]['member'] = '-';
+                $laporan[$index]['pembayaran'] = $beban->beban;
+                $laporan[$index]['harga_rupiah'] = '- Rp.' . number_format($beban->harga, 2, ',', '.');
+                $laporan[$index]['harga'] = -$beban->harga;
                 $index++;
             }
-        }
-        foreach($bebans as $beban){
-            $laporan[$index]['tanggal'] = $beban->tanggal_transaksi;
-            $laporan[$index]['waktu_transaksi'] = cari_tanggal($beban->tanggal_transaksi);
-            $laporan[$index]['member'] = '-';
-            $laporan[$index]['pembayaran'] = $beban->beban;
-            $laporan[$index]['harga_rupiah'] = '- Rp.' . number_format($beban->harga, 2, ',', '.');
-            $laporan[$index]['harga'] = -$beban->harga;
-            $index++;
         }
 
         // Mengambil kolom 'tanggal' dari array $laporan untuk dijadikan acuan pengurutan

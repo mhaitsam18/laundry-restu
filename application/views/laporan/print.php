@@ -33,7 +33,7 @@
 </head>
 
 <body>
-    <h1>Laporan Transaksi Laundry</h1>
+    <h1>Laporan <?= $judul_laporan ?> Laundry</h1>
     <h3>Tahun: <?= $tahun ?>, Bulan: <?= $bulan ?></h3>
     <table>
         <thead>
