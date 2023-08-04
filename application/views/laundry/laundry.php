@@ -171,7 +171,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="berat" class="form-label">Berat / Jumlah (kg / pcs)</label>
-                        <input type="number" step="any" class="form-control <?= (form_error('berat')) ? 'is-invalid' : '' ?>" id="berat" name="berat" placeholder="Berat" value="<?= set_value('berat') ?>">
+                        <input type="number" step="any" class="form-control <?= (form_error('berat')) ? 'is-invalid' : '' ?>" id="berat" name="berat" placeholder="Berat / Jumlah" value="<?= set_value('berat') ?>">
                         <div class="form-control-icon">
                             <i class="bi bi-shield-lock"></i>
                         </div>
@@ -284,7 +284,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="berat" class="form-label">Berat / Jumlah (kg/pcs)</label>
-                        <input type="number" step="any" class="form-control <?= (form_error('berat')) ? 'is-invalid' : '' ?>" id="berat" name="berat" placeholder="Berat" value="<?= set_value('berat') ?>">
+                        <input type="number" step="any" class="form-control <?= (form_error('berat')) ? 'is-invalid' : '' ?>" id="berat" name="berat" placeholder="Berat / Jumlah" value="<?= set_value('berat') ?>">
                         <div class="form-control-icon">
                             <i class="bi bi-shield-lock"></i>
                         </div>
