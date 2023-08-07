@@ -45,21 +45,21 @@
                             <tbody>
                                 <?php $no = 1; ?>
                                 <?php foreach ($laundrys as $laundry) : ?>
-                                    <?php 
-                                        $table = '';
-                                        if ($laundry['status'] == 'menunggu pengambilan') {
-                                            $table = 'table-info';
-                                        } elseif($laundry['status'] == 'proses'){
-                                            $table = 'table-warning';
-                                        } elseif($laundry['status'] == 'batal'){
-                                            $table = 'table-danger';
-                                        } elseif($laundry['status'] == 'selesai'){
-                                            $table = 'table-success';
-                                        } elseif($laundry['status'] == 'diantar'){
-                                            $table = 'table-secondary';
-                                        } elseif($laundry['status'] == 'diambil'){
-                                        }
-                                        ?>
+                                    <?php
+                                    $table = '';
+                                    if ($laundry['status'] == 'menunggu pengambilan') {
+                                        $table = 'table-info';
+                                    } elseif ($laundry['status'] == 'proses') {
+                                        $table = 'table-warning';
+                                    } elseif ($laundry['status'] == 'batal') {
+                                        $table = 'table-danger';
+                                    } elseif ($laundry['status'] == 'selesai') {
+                                        $table = 'table-success';
+                                    } elseif ($laundry['status'] == 'diantar') {
+                                        $table = 'table-secondary';
+                                    } elseif ($laundry['status'] == 'diambil') {
+                                    }
+                                    ?>
                                     <tr class="<?= $table ?>">
                                         <td><?= $no++ ?></td>
                                         <td><?= date('j F Y H:i:s', strtotime($laundry['created_at'])) ?></td>
@@ -82,14 +82,14 @@
                                             <?php if ($laundry['tipe_laundry'] == 'laundry berat') : ?>
                                                 <?= $laundry['berat'] ?> kg
                                             <?php elseif ($laundry['tipe_laundry'] == 'laundry tetap') : ?>
-                                                <?= number_format($laundry['berat'],0) ?> pcs
+                                                <?= number_format($laundry['berat'], 0) ?> pcs
                                             <?php endif; ?>
                                         </td>
                                         <td><?= ($laundry['harga']) ? 'Rp.' . number_format($laundry['harga'], 2, ',', '.') : '-' ?></td>
                                         <td><?= $laundry['status'] ?></td>
                                         <td><?= $laundry['testimoni'] ?></td>
                                         <td>
-                                            <a href="#" class="badge bg-success btn-update" data-bs-toggle="modal" data-bs-target="#editModal" data-id="<?= $laundry['id'] ?>" data-member_id="<?= $laundry['member_id'] ?>" data-pengantaran="<?= $laundry['pengantaran'] ?>" data-kurir_id="<?= $laundry['kurir_id'] ?>" data-jenis_laundry_id="<?= $laundry['jenis_laundry_id'] ?>" data-berat="<?= $laundry['berat'] ?>" data-harga="<?= $laundry['harga'] ?>" data-pembayaran="<?= $laundry['pembayaran'] ?>" data-status="<?= $laundry['status'] ?>" data-testimoni="<?= $laundry['testimoni'] ?>" data-paket_id="<?= $laundry['paket_id'] ?>" data-paket="<?= $laundry['paket'] ?>">Perbarui</a>
+                                            <a href="#" class="badge bg-success btn-update" data-bs-toggle="modal" data-bs-target="#editModal" data-id="<?= $laundry['id'] ?>" data-member_id="<?= $laundry['member_id'] ?>" data-nama_member="<?= $laundry['nama_member'] ?>" data-pengantaran="<?= $laundry['pengantaran'] ?>" data-kurir_id="<?= $laundry['kurir_id'] ?>" data-jenis_laundry_id="<?= $laundry['jenis_laundry_id'] ?>" data-berat="<?= $laundry['berat'] ?>" data-harga="<?= $laundry['harga'] ?>" data-pembayaran="<?= $laundry['pembayaran'] ?>" data-status="<?= $laundry['status'] ?>" data-testimoni="<?= $laundry['testimoni'] ?>" data-paket_id="<?= $laundry['paket_id'] ?>" data-paket="<?= $laundry['paket'] ?>">Perbarui</a>
 
                                             <a href="<?= base_url("Laundry/laundry/delete/$laundry[id]"); ?>" class="badge bg-danger tombol-hapus" data-hapus="laundry">Hapus</a>
                                         </td>
@@ -237,7 +237,7 @@
                                 <option value="<?= $member->id ?>" <?= (set_value('member_id') == $member->id) ? 'selected' : '' ?>><?= $member->name ?></option>
                             <?php endforeach; ?>
                         </select> -->
-                        <input type="text" class="form-control  <?= (form_error('member_id')) ? 'is-invalid' : '' ?>" value="<?= $member->name ?>" readonly>
+                        <input type="text" name="nama_member" class="form-control  <?= (form_error('member_id')) ? 'is-invalid' : '' ?>" id="nama_member" readonly>
                         <div class="form-control-icon">
                             <i class="bi bi-shield-lock"></i>
                         </div>
@@ -333,6 +333,8 @@
         $(".modal-body  #id").val(id);
         var member_id = $(this).data('member_id');
         $(".modal-body  #member_id").val(member_id);
+        var nama_member = $(this).data('nama_member');
+        $(".modal-body  #nama_member").val(nama_member);
         var pengantaran = $(this).data('pengantaran');
         $(".modal-body  #pengantaran").val(pengantaran);
         var kurir_id = $(this).data('kurir_id');
