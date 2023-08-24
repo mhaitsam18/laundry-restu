@@ -40,7 +40,7 @@
             <tr>
                 <th>Tanggal Transaksi</th>
                 <?php if (strtolower($judul_laporan) != 'pengeluaran') { ?>
-                <th>Member</th>
+                <!-- <th>Member</th> -->
                 <?php } ?>
                 <th>Pembayaran</th>
                 <th>Harga</th>
@@ -51,9 +51,9 @@
             <?php foreach($laporans as $key => $laporan): ?>
                 <tbody>
                     <tr>
-                        <td><?= $laporan['waktu_transaksi'] ?></td>
+                        <td><?= date('d/m/Y', strtotime($laporan['waktu_transaksi'])) ?></td>
                         <?php if (strtolower($judul_laporan) != 'pengeluaran') { ?>
-                        <td><?= $laporan['member'] ?></td>
+                        <!-- <td><?= $laporan['member'] ?></td> -->
                         <?php } ?>
                         <td><?= $laporan['pembayaran'] ?></td>
                         <td><?= $laporan['harga_rupiah'] ?></td>
@@ -63,14 +63,14 @@
             <?php endforeach; ?>
             <tfoot>
                 <tr>
-                    <th <?php if (strtolower($judul_laporan) != 'pengeluaran') { ?>colspan="3"<?php } else { ?>colspan="2"<?php } ?> style="text-align: right;">Total :</th>
+                    <th <?php if (strtolower($judul_laporan) != 'pengeluaran') { ?>colspan="2"<?php } else { ?>colspan="2"<?php } ?> style="text-align: right;">Total :</th>
                     <th>Rp.<?= number_format($total_harga,2,',','.') ?></th>
                 </tr>
             </tfoot>
         <?php else: ?>
             <tbody>
                 <tr>
-                    <td colspan="4">Tidak ada Laporan</td>
+                    <td colspan="3">Tidak ada Laporan</td>
                 </tr>
             </tbody>
         <?php endif; ?>
