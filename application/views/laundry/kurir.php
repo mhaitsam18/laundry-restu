@@ -40,6 +40,7 @@
                                     <th scope="col">Nomor Gawai</th>
                                     <th scope="col">Alamat</th>
                                     <th scope="col">Foto</th>
+                                    <th scope="col">Active</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
@@ -59,10 +60,14 @@
                                         <td><?= $kurir['phone_number'] ?></td>
                                         <td><?= $kurir['address'] ?></td>
                                         <td><img src="<?= base_url('assets/img/' . $kurir['image']) ?>" class="img-thumbnail img-fluid"></td>
+                                        <td><?= $kurir['is_active'] == 1 ? "Active" : 'Deactive' ?></td>
                                         <td>
                                             <a href="#" class="badge bg-success btn-update" data-bs-toggle="modal" data-bs-target="#editModal" data-id="<?= $kurir['kurir_id'] ?>" data-user_id="<?= $kurir['user_id'] ?>" data-name="<?= $kurir['name'] ?>" data-username="<?= $kurir['username'] ?>" data-email="<?= $kurir['email'] ?>" data-gender="<?= $kurir['gender'] ?>" data-birthday="<?= $kurir['birthday'] ?>" data-phone_number="<?= $kurir['phone_number'] ?>" data-address="<?= $kurir['address'] ?>" data-image="<?= $kurir['image'] ?>" data-no_ktp="<?= $kurir['no_ktp'] ?>" data-foto_ktp="<?= $kurir['foto_ktp'] ?>">Ubah</a>
-
-                                            <a href="<?= base_url("Laundry/kurir/delete/$kurir[id]"); ?>" class="badge bg-danger tombol-hapus" data-hapus="kurir">Hapus</a>
+                                            <?php if ($kurir['is_active'] == 1) { ?>
+                                                <a href="<?= base_url("Laundry/kurir/delete/$kurir[id]"); ?>" class="badge bg-danger tombol-disable" data-hapus="kurir">Deactive</a>
+                                            <?php } else { ?>
+                                                <a href="<?= base_url("Laundry/kurir/reactive/$kurir[id]"); ?>" class="badge bg-info tombol-reactive" data-hapus="kurir">Reactive</a>
+                                            <?php } ?>
                                         </td>
                                     </tr>
 

@@ -37,7 +37,7 @@
                                         <?= form_error('daerah_id', '<small class="text-danger pl-3">', '</small>') ?>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="nama_kost" class="form-label">Nama Kost</label>
+                                        <label for="nama_kost" class="form-label">Nomer Rumah</label>
                                         <input type="text" class="form-control <?= (form_error('nama_kost')) ? 'is-invalid' : '' ?>" id="nama_kost" name="nama_kost" placeholder="Nama Kost" value="<?= set_value('nama_kost', $member->nama_kost) ?>">
                                         <div class="form-control-icon">
                                             <i class="bi bi-shield-lock"></i>

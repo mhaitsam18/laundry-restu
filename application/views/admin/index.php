@@ -38,7 +38,7 @@
 						</div>
 						<div class="card-body text-justify">
 							<p class="fs-3">
-								"Laundry Restu" adalah sebuah kedai layanan laundry yang berlokasi di tengah pusat kota. Kedai ini telah menjadi tempat pilihan bagi banyak orang untuk mencuci dan merawat pakaian mereka sejak didirikan beberapa tahun yang lalu. Dengan kombinasi layanan berkualitas, pelayanan ramah, dan harga yang kompetitif, "Laundry Restu" telah berhasil membangun reputasi yang kuat di kalangan pelanggan setianya.
+								"Laundry Restu" adalah sebuah toko layanan laundry yang berlokasi strategis. Toko ini telah menjadi tempat pilihan bagi banyak orang untuk mencuci dan merawat pakaian mereka sejak didirikan beberapa tahun yang lalu. Dengan kombinasi layanan berkualitas, pelayanan ramah, dan harga yang kompetitif, "Laundry Restu" telah berhasil membangun reputasi yang kuat di kalangan pelanggan setianya.
 							</p>
 						</div>
 					</div>

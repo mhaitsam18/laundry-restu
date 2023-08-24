@@ -150,11 +150,24 @@ class Kurir extends CI_Controller
     public function delete($id)
     {
         $this->db->where('id', $id);
-        $this->db->delete('kurir');
+        // $this->db->delete('kurir');
+        $this->db->update('kurir', ['is_active' => 0]);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-        kurir berhasil dihapus!
+        kurir berhasil dinonaktifkan!
 			</div>');
-        $this->session->set_flashdata('flash', 'Data kurir berhasil dihapus!');
+        $this->session->set_flashdata('flash', 'Data kurir berhasil dinonaktifkan!');
+
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+
+    public function reactive($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('kurir', ['is_active' => 1]);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+        kurir berhasil diaktifkan kembali!
+			</div>');
+        $this->session->set_flashdata('flash', 'Data kurir berhasil diaktifkan kembali!');
 
         redirect($_SERVER['HTTP_REFERER']);
     }

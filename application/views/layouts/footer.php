@@ -160,6 +160,44 @@
         })
     });
 
+    $('.tombol-disable').on('click', function(e) {
+        const hapus = $(this).data('hapus');
+        const href = $(this).attr('href');
+        e.preventDefault();
+        Swal.fire({
+            title: 'Apakah Anda Yakin?',
+            text: "Data " + hapus + " akan dinonaktifkan!",
+            icon: 'warning',
+            confirmButtonText: 'Non Aktifkan',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.location.href = href;
+            }
+        })
+    });
+
+    $('.tombol-reactive').on('click', function(e) {
+        const hapus = $(this).data('hapus');
+        const href = $(this).attr('href');
+        e.preventDefault();
+        Swal.fire({
+            title: 'Apakah Anda Yakin?',
+            text: "Data " + hapus + " akan diaktifkan kembali",
+            icon: 'warning',
+            confirmButtonText: 'Aktifkan',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.location.href = href;
+            }
+        })
+    });
+
     $('.tombol-terima').on('click', function(e) {
         const href = $(this).attr('href');
         e.preventDefault();

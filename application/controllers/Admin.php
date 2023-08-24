@@ -151,11 +151,24 @@ class Admin extends CI_Controller {
 	public function deleteUser($id)
 	{
 		$this->db->where('id', $id);
-		$this->db->delete('user');
+		// $this->db->delete('user');
+		$this->db->update('user', ['is_active' => 0]);
 		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-        data user berhasil dihapus!
+        data user berhasil dinonaktifkan!
 			</div>');
-		$this->session->set_flashdata('flash', 'data user berhasil dihapus!');
+		$this->session->set_flashdata('flash', 'data user berhasil dinonaktifkan!');
+
+		redirect($_SERVER['HTTP_REFERER']);
+	}
+
+	public function reactiveUser($id)
+	{
+		$this->db->where('id', $id);
+		$this->db->update('user', ['is_active' => 1]);
+		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+        data user berhasil diaktifkan kembali!
+			</div>');
+		$this->session->set_flashdata('flash', 'data user berhasil diaktifkan kembali!');
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}

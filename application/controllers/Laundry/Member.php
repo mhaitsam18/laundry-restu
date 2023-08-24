@@ -196,11 +196,24 @@ class Member extends CI_Controller
     public function delete($id)
     {
         $this->db->where('id', $id);
-        $this->db->delete('member');
+        // $this->db->delete('member');
+        $this->db->update('member', ['is_active' => 0]);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-        member berhasil dihapus!
+        member berhasil dinonaktifkan!
 			</div>');
-        $this->session->set_flashdata('flash', 'Data Member berhasil dihapus!');
+        $this->session->set_flashdata('flash', 'Data Member berhasil dinonaktifkan!');
+
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+
+    public function reactive($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('member', ['is_active' => 1]);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+        member berhasil diaktifkan kembali!
+			</div>');
+        $this->session->set_flashdata('flash', 'Data Member berhasil diaktifkan kembali!');
 
         redirect($_SERVER['HTTP_REFERER']);
     }

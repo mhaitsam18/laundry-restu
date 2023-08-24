@@ -64,7 +64,12 @@
                                             <a href="" class="badge bg-warning setRoleButton" data-bs-toggle="modal" data-bs-target="#setRoleModal" data-id="<?= $key['uid'] ?>">Set Role</a>
 
                                             <a href="#" class="badge bg-success btn-update" data-bs-toggle="modal" data-bs-target="#editModal" data-id="<?= $key['uid'] ?>" data-username="<?= $key['username'] ?>" data-name="<?= $key['name'] ?>" data-email="<?= $key['email'] ?>" data-gender="<?= $key['gender'] ?>" data-birthday="<?= $key['birthday'] ?>" data-phone_number="<?= $key['phone_number'] ?>" data-address="<?= $key['address'] ?>" data-image="<?= $key['image'] ?>" data-role_id="<?= $key['role_id'] ?>">Ubah</a>
-                                            <a href="<?= base_url("Admin/deleteUser/$key[uid]"); ?>" class="badge bg-danger tombol-hapus" data-hapus="user">Hapus</a>
+                                            
+                                            <?php if ($key['is_active'] == 1) { ?>
+                                                <a href="<?= base_url("Admin/deleteUser/$key[uid]"); ?>" class="badge bg-danger tombol-disable" data-hapus="user">Deactive</a>
+                                            <?php } else { ?>
+                                                <a href="<?= base_url("Admin/reactiveUser/$key[uid]"); ?>" class="badge bg-info tombol-reactive" data-hapus="user">Reactive</a>
+                                            <?php } ?>
                                         </td>
                                     </tr>
                                     <?php $no++; ?>

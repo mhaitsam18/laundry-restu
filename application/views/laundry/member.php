@@ -42,6 +42,7 @@
                                     <th scope="col">Tanggal Lahir</th>
                                     <th scope="col">Nomor Gawai</th>
                                     <th scope="col">Foto</th>
+                                    <th scope="col">Active</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
@@ -79,10 +80,16 @@
                                         <td><?= date('j F Y', strtotime($member['birthday'])) ?></td>
                                         <td><?= $member['phone_number'] ?></td>
                                         <td><img src="<?= base_url('assets/img/' . $member['image']) ?>" class="img-thumbnail img-fluid"></td>
+                                        <td><?= $member['is_active'] == 1 ? "Active" : 'Deactive' ?></td>
                                         <td>
                                             <a href="#" class="badge bg-success btn-update" data-bs-toggle="modal" data-bs-target="#editModal" data-id="<?= $member['member_id'] ?>" data-user_id="<?= $member['user_id'] ?>" data-name="<?= $member['name'] ?>" data-username="<?= $member['username'] ?>" data-email="<?= $member['email'] ?>" data-gender="<?= $member['gender'] ?>" data-birthday="<?= $member['birthday'] ?>" data-phone_number="<?= $member['phone_number'] ?>" data-address="<?= $member['address'] ?>" data-image="<?= $member['image'] ?>" data-daerah_id="<?= $member['daerah_id'] ?>" data-nama_kost="<?= $member['nama_kost'] ?>" data-alamat="<?= $member['alamat'] ?>" data-paket_id="<?= $member['paket_id'] ?>" data-kadaluarsa_paket="<?= $member['kadaluarsa_paket'] ?>">Ubah</a>
 
-                                            <a href="<?= base_url("Laundry/member/delete/$member[id]"); ?>" class="badge bg-danger tombol-hapus" data-hapus="member">Hapus</a>
+                                            <?php if ($member['is_active'] == 1) { ?>
+                                                <a href="<?= base_url("Laundry/member/delete/$member[id]"); ?>" class="badge bg-danger tombol-disable" data-hapus="member">Deactive</a>
+                                            <?php } else { ?>
+                                                <a href="<?= base_url("Laundry/member/reactive/$member[id]"); ?>" class="badge bg-info tombol-reactive" data-hapus="member">Reactive</a>
+                                            <?php } ?>
+                                            
                                         </td>
                                     </tr>
 

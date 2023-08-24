@@ -221,8 +221,11 @@ class Auth extends CI_Controller {
 
 				}
 			} else{
+				// $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+				// 	This email has not been activated! Please Check Your Email!
+				// 	</div>');
 				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-					This email has not been activated! Please Check Your Email!
+					Akun anda sedang dinonaktifkan, mohon untuk hubungi Admin/CS untuk dapat mengaktifkan akun anda kembali
 					</div>');
 				redirect('auth');
 			}

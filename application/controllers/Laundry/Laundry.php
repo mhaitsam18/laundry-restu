@@ -99,11 +99,24 @@ class Laundry extends CI_Controller
     public function delete($id)
     {
         $this->db->where('id', $id);
-        $this->db->delete('laundry');
+        // $this->db->delete('laundry');
+        $this->db->update('laundry', ['is_active' => 0]);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-        laundry berhasil dihapus!
+        laundry berhasil dinonaktif!
 			</div>');
-        $this->session->set_flashdata('flash', 'Data laundry berhasil dihapus!');
+        $this->session->set_flashdata('flash', 'Data laundry berhasil dinonaktif!');
+
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+
+    public function reactive($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('laundry', ['is_active' => 1]);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+        laundry berhasil diperbarui!
+			</div>');
+        $this->session->set_flashdata('flash', 'Data laundry berhasil diperbarui!');
 
         redirect($_SERVER['HTTP_REFERER']);
     }

@@ -1,3 +1,4 @@
+
 <div class="page-content">
 
     <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
@@ -39,6 +40,7 @@
                                     <th scope="col">Harga</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Testimoni</th>
+                                    <th scope="col">Active</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
@@ -58,6 +60,10 @@
                                     } elseif ($laundry['status'] == 'diantar') {
                                         $table = 'table-secondary';
                                     } elseif ($laundry['status'] == 'diambil') {
+                                    }
+
+                                    if ($laundry['is_active'] != 1) {
+                                        $table = '';
                                     }
                                     ?>
                                     <tr class="<?= $table ?>">
@@ -88,10 +94,15 @@
                                         <td><?= ($laundry['harga']) ? 'Rp.' . number_format($laundry['harga'], 2, ',', '.') : '-' ?></td>
                                         <td><?= $laundry['status'] ?></td>
                                         <td><?= $laundry['testimoni'] ?></td>
+                                        <td><?= $laundry['is_active'] == 1 ? "Active" : 'Deactive' ?></td>
                                         <td>
                                             <a href="#" class="badge bg-success btn-update" data-bs-toggle="modal" data-bs-target="#editModal" data-id="<?= $laundry['id'] ?>" data-member_id="<?= $laundry['member_id'] ?>" data-nama_member="<?= $laundry['nama_member'] ?>" data-pengantaran="<?= $laundry['pengantaran'] ?>" data-kurir_id="<?= $laundry['kurir_id'] ?>" data-jenis_laundry_id="<?= $laundry['jenis_laundry_id'] ?>" data-berat="<?= $laundry['berat'] ?>" data-harga="<?= $laundry['harga'] ?>" data-pembayaran="<?= $laundry['pembayaran'] ?>" data-status="<?= $laundry['status'] ?>" data-testimoni="<?= $laundry['testimoni'] ?>" data-paket_id="<?= $laundry['paket_id'] ?>" data-paket="<?= $laundry['paket'] ?>">Perbarui</a>
-
-                                            <a href="<?= base_url("Laundry/laundry/delete/$laundry[id]"); ?>" class="badge bg-danger tombol-hapus" data-hapus="laundry">Hapus</a>
+                                            
+                                            <?php if ($laundry['is_active'] == 1) { ?>
+                                                <a href="<?= base_url("Laundry/laundry/delete/$laundry[id]"); ?>" class="badge bg-danger tombol-disable" data-hapus="laundry">Deactive</a>
+                                            <?php } else { ?>
+                                                <a href="<?= base_url("Laundry/laundry/reactive/$laundry[id]"); ?>" class="badge bg-info tombol-reactive" data-hapus="laundry">Reactive</a>
+                                            <?php } ?>
                                         </td>
                                     </tr>
 
