@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 30, 2023 at 11:26 AM
+-- Generation Time: Aug 24, 2023 at 09:15 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.1.17
 
@@ -166,6 +166,7 @@ CREATE TABLE `laundry` (
   `pembayaran` timestamp NULL DEFAULT NULL,
   `status` enum('menunggu pengambilan','proses','batal','selesai','diantar','diambil') DEFAULT NULL,
   `testimoni` varchar(255) DEFAULT NULL,
+  `is_active` int(11) DEFAULT 1,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` time NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -174,10 +175,10 @@ CREATE TABLE `laundry` (
 -- Dumping data for table `laundry`
 --
 
-INSERT INTO `laundry` (`id`, `member_id`, `pengantaran`, `kurir_id`, `jenis_laundry_id`, `berat`, `harga`, `pembayaran`, `status`, `testimoni`, `created_at`, `updated_at`) VALUES
-(1, 1, 'pick up', 1, 9, 10.00, 0.00, NULL, 'diambil', 'makaseeh', '2023-07-14 16:12:35', '23:12:35'),
-(2, 1, 'pick up', NULL, 9, 10.00, 0.00, NULL, 'diambil', NULL, '2023-07-22 05:24:13', '12:24:13'),
-(3, 1, 'pick up', 1, 6, 1.00, 25000.00, NULL, 'selesai', NULL, '2023-07-22 05:24:20', '12:24:20');
+INSERT INTO `laundry` (`id`, `member_id`, `pengantaran`, `kurir_id`, `jenis_laundry_id`, `berat`, `harga`, `pembayaran`, `status`, `testimoni`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 1, 'pick up', 1, 9, 10.00, 0.00, NULL, 'diambil', 'makaseeh', 1, '2023-07-14 16:12:35', '23:12:35'),
+(2, 1, 'pick up', NULL, 9, 10.00, 0.00, NULL, 'diambil', NULL, 1, '2023-07-22 05:24:13', '12:24:13'),
+(3, 1, 'pick up', 1, 6, 1.00, 25000.00, NULL, 'selesai', NULL, 1, '2023-07-22 05:24:20', '12:24:20');
 
 -- --------------------------------------------------------
 
@@ -202,7 +203,7 @@ CREATE TABLE `member` (
 --
 
 INSERT INTO `member` (`id`, `user_id`, `daerah_id`, `nama_kost`, `alamat`, `paket_id`, `kadaluarsa_paket`, `craeted_at`, `updated_at`) VALUES
-(1, 2, 1, 'Griya Mustika', 'Bandung', 3, '2023-08-22', '2023-07-10 11:28:13', '2023-07-10 11:28:13');
+(1, 2, 1, 'Griya Mustika', 'Bandung', 3, NULL, '2023-07-10 11:28:13', '2023-07-10 11:28:13');
 
 -- --------------------------------------------------------
 
